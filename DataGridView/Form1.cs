@@ -13,6 +13,14 @@ namespace DataGridView
 {
     public partial class Form1 : Form
     {
+
+        // 幅の差
+        int diffWidth = 0;
+        // 高さの差
+        int diffHeight = 0;
+
+
+
         public Form1()
         {
             InitializeComponent();
@@ -29,8 +37,11 @@ namespace DataGridView
             }
             comboBox1.SelectedIndex = 6;
 
-            WidthLoad();
+            // 幅とサイズの差を保存
+            diffWidth = this.Width - dataGridView1.Width;
+            diffHeight = this.Height - dataGridView1.Height;
 
+            load1();
         }
 
         // データセットを作成
@@ -41,6 +52,7 @@ namespace DataGridView
         List<bool> robotChecked = new List<bool>();
 
 
+        // データセット
         void SetPowerData(string path)
         {
             dataSet = new DataSet("データリスト");
@@ -152,9 +164,6 @@ namespace DataGridView
             dataGridView1.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
             //すべての列の幅を自動調整する
             dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-
-
-
         }
 
         // DataGridViewAutoSizeColumnsModeの確認
@@ -168,11 +177,9 @@ namespace DataGridView
                 {
                     case 0:
                         v = DataGridViewAutoSizeColumnsMode.AllCells;
-                        throw new Exception("00000");
                         break;
                     case 1:
                         v = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-                        throw new Exception("11111");
                         break;
                     case 2:
                         v = DataGridViewAutoSizeColumnsMode.ColumnHeader;
@@ -199,35 +206,71 @@ namespace DataGridView
 
             }
 
+        }
 
+
+        void load1()
+        {
             try
             {
-                return;
+
+                for (int i = 0; i < comboBox1.Items.Count; i++)
+                {
+
+                    int num = comboBox1.SelectedIndex;
+
+                    num = i;
+                    DataGridViewAutoSizeColumnsMode v;
+                    switch (num)
+                    {
+                        case 0:
+                            v = DataGridViewAutoSizeColumnsMode.AllCells;
+                            break;
+                        case 1:
+                            v = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+                            break;
+                        case 2:
+                            v = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+                            break;
+                        case 3:
+                            v = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                            break;
+                        case 4:
+                            v = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
+                            break;
+                        case 5:
+                            v = DataGridViewAutoSizeColumnsMode.Fill;
+                            break;
+                        default:
+                            v = DataGridViewAutoSizeColumnsMode.None;
+                            break;
+                    }
+                    dataGridView1.AutoSizeColumnsMode = v;
+
+                    comboBox1.Items[i] = v.ToString();
+
+                    label1.Text = v.ToString();
+
+                }
+
+
+
 
             }
-            // returnの後でも実行される
-            finally
+            catch (Exception ex)
             {
-                Console.WriteLine("end");
+                Console.WriteLine(ex.Message);
+
             }
+
 
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             //ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-        }
-
-
-        // 幅の差
-        int diffWidth = 0;
-        // 高さの差
-        int diffHeight = 0;
-        void WidthLoad()
-        {
-            diffWidth = this.Width - dataGridView1.Width;
-            diffHeight = this.Height - dataGridView1.Height;
         }
 
         // リスイズのイベント
@@ -238,9 +281,7 @@ namespace DataGridView
                 dataGridView1.Width = this.Width - diffWidth;
                 dataGridView1.Height = this.Height - diffHeight;
             }
-
         }
-
 
     }
 }
