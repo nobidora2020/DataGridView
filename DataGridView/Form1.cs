@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //app: データグリッドビューに関する
 
-namespace DataGridView {
+namespace DataGridViewUse {
     public partial class Form1 : Form {
         private int diffWidth = 0; // 幅の差
         private int diffHeight = 0; // 高さの差
@@ -35,6 +35,9 @@ namespace DataGridView {
             LoadColumnsMode();
 
             addCheckCoumCbx.Text = addCheckCoumCbx.Checked.ToString();
+
+            timer1.Interval = 10;
+            timer1.Enabled = true;
         }
 
         /// <summary>
@@ -352,6 +355,88 @@ namespace DataGridView {
                     dataGridView1.Rows[i].Cells[0].Value = !(bool)dataGridView1.Rows[i].Cells[0].Value;
                 }
             }
+        }
+
+
+        private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
+            int row = e.RowIndex;
+            int colum = e.ColumnIndex;
+            textBox1.Text = $"row:{row} colum:{colum}";
+
+
+            DataGridView dgv = (DataGridView)sender;    
+            if (addCheckCoumCbx.Checked==true && row ==-1 && colum==0) {
+
+
+                List<Point> pointList = new List<Point>();
+
+                textBox3.Text = "";
+                foreach (DataGridViewCell c in dataGridView1.SelectedCells) {
+
+                    pointList.Add(new Point(c.RowIndex,c.ColumnIndex));
+                    Console.WriteLine("{0}, {1}", c.ColumnIndex, c.RowIndex);
+                    textBox3.Text += String.Format("{0}, {1}", c.ColumnIndex, c.RowIndex);
+                }
+
+                dgv.CurrentCell = null;
+
+                for (int i = 0; i < dataGridView1.Rows.Count; i++) {
+                    dataGridView1.Rows[i].Cells[0].Value = !(bool)dataGridView1.Rows[i].Cells[0].Value;
+                }
+
+
+                dgv.CurrentCell = null;
+                for (int i = 0; i < pointList.Count; i++) {
+                    if (i==0) {
+                        dgv.CurrentCell = this.dataGridView1[pointList[i].Y, pointList[i].X];
+                    }
+                    dataGridView1.Rows[pointList[i].X].Cells[pointList[i].Y].Selected = true;
+                }
+            }
+
+
+        }
+
+
+
+        private void Button1_Click(object sender, EventArgs e) {
+
+            dataGridView1.Rows[2].Cells[0].Value = true;
+
+        }
+
+        private void Button2_Click(object sender, EventArgs e) {
+            dataGridView1.Rows[2].Cells[0].Value = false;
+
+        }
+
+        private void Button3_Click(object sender, EventArgs e) {
+
+            bool b= (bool)dataGridView1.Rows[2].Cells[0].Value;
+            textBox1.Text = b.ToString();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e) {
+
+            if (addCheckCoumCbx.Checked) {
+                string s = "";
+                for (int i = 0; i < 10; i++) {
+                    bool b = (bool)dataGridView1.Rows[i].Cells[0].Value;
+                    s += b.ToString() + Environment.NewLine;
+                }
+                textBox2.Text = s;
+            }
+
+        }
+
+        private void DataGridView1_CurrentCellChanged(object sender, EventArgs e) {
+
+            DataGridView dgv = (DataGridView)sender;
+            
+            if (dgv.IsCurrentCellDirty) {
+                dgv.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+
         }
     }
 }
