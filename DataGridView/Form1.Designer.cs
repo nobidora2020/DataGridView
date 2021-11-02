@@ -32,7 +32,11 @@ namespace DataGridView
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.WidthAdjustBtn = new System.Windows.Forms.Button();
+            this.addColumBtn = new System.Windows.Forms.Button();
+            this.checkCountBtn = new System.Windows.Forms.Button();
+            this.addCheckCoumCbx = new System.Windows.Forms.CheckBox();
+            this.reverseCheckBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +63,7 @@ namespace DataGridView
             "4",
             "5",
             "6"});
-            this.comboBox1.Location = new System.Drawing.Point(88, 404);
+            this.comboBox1.Location = new System.Drawing.Point(89, 384);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(236, 31);
@@ -70,32 +74,79 @@ namespace DataGridView
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(84, 376);
+            this.label1.Location = new System.Drawing.Point(87, 356);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 23);
             this.label1.TabIndex = 19;
             this.label1.Text = "SizeColumnsMode";
+            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
-            // button1
+            // WidthAdjustBtn
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(377, 404);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 35);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.WidthAdjustBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.WidthAdjustBtn.Location = new System.Drawing.Point(91, 451);
+            this.WidthAdjustBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.WidthAdjustBtn.Name = "WidthAdjustBtn";
+            this.WidthAdjustBtn.Size = new System.Drawing.Size(84, 35);
+            this.WidthAdjustBtn.TabIndex = 20;
+            this.WidthAdjustBtn.Text = "幅調整";
+            this.WidthAdjustBtn.UseVisualStyleBackColor = true;
+            this.WidthAdjustBtn.Click += new System.EventHandler(this.WidthAdjjustBtn_Click);
+            // 
+            // addColumBtn
+            // 
+            this.addColumBtn.Location = new System.Drawing.Point(454, 356);
+            this.addColumBtn.Name = "addColumBtn";
+            this.addColumBtn.Size = new System.Drawing.Size(147, 74);
+            this.addColumBtn.TabIndex = 21;
+            this.addColumBtn.Text = "列を追加";
+            this.addColumBtn.UseVisualStyleBackColor = true;
+            this.addColumBtn.Click += new System.EventHandler(this.AddColumBtn_Click);
+            // 
+            // checkCountBtn
+            // 
+            this.checkCountBtn.Location = new System.Drawing.Point(862, 366);
+            this.checkCountBtn.Name = "checkCountBtn";
+            this.checkCountBtn.Size = new System.Drawing.Size(94, 72);
+            this.checkCountBtn.TabIndex = 22;
+            this.checkCountBtn.Text = "チェックを調べる";
+            this.checkCountBtn.UseVisualStyleBackColor = true;
+            this.checkCountBtn.Click += new System.EventHandler(this.CheckCountBtn_Click);
+            // 
+            // addCheckCoumCbx
+            // 
+            this.addCheckCoumCbx.Appearance = System.Windows.Forms.Appearance.Button;
+            this.addCheckCoumCbx.Location = new System.Drawing.Point(664, 358);
+            this.addCheckCoumCbx.Name = "addCheckCoumCbx";
+            this.addCheckCoumCbx.Size = new System.Drawing.Size(128, 80);
+            this.addCheckCoumCbx.TabIndex = 23;
+            this.addCheckCoumCbx.Text = "チェック列add";
+            this.addCheckCoumCbx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.addCheckCoumCbx.UseVisualStyleBackColor = true;
+            this.addCheckCoumCbx.CheckedChanged += new System.EventHandler(this.AddCheckCoumCbx_CheckedChanged);
+            // 
+            // reverseCheckBtn
+            // 
+            this.reverseCheckBtn.Location = new System.Drawing.Point(862, 451);
+            this.reverseCheckBtn.Name = "reverseCheckBtn";
+            this.reverseCheckBtn.Size = new System.Drawing.Size(94, 72);
+            this.reverseCheckBtn.TabIndex = 22;
+            this.reverseCheckBtn.Text = "チェックを反転";
+            this.reverseCheckBtn.UseVisualStyleBackColor = true;
+            this.reverseCheckBtn.Click += new System.EventHandler(this.ReverseCheckBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1048, 543);
+            this.Controls.Add(this.addCheckCoumCbx);
+            this.Controls.Add(this.reverseCheckBtn);
+            this.Controls.Add(this.checkCountBtn);
+            this.Controls.Add(this.addColumBtn);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.WidthAdjustBtn);
             this.Controls.Add(this.dataGridView1);
             this.Font = new System.Drawing.Font("メイリオ", 9F);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -113,7 +164,11 @@ namespace DataGridView
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button WidthAdjustBtn;
+        private System.Windows.Forms.Button addColumBtn;
+        private System.Windows.Forms.Button checkCountBtn;
+        private System.Windows.Forms.CheckBox addCheckCoumCbx;
+        private System.Windows.Forms.Button reverseCheckBtn;
     }
 }
 

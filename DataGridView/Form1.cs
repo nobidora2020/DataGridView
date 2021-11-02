@@ -10,10 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //app: データグリッドビューに関する
 
-namespace DataGridView
-{
-    public partial class Form1 : Form
-    {
+namespace DataGridView {
+    public partial class Form1 : Form {
         private int diffWidth = 0; // 幅の差
         private int diffHeight = 0; // 高さの差
         private DataSet dataSet = new DataSet("データリスト"); // データセットを作成
@@ -21,31 +19,29 @@ namespace DataGridView
         List<bool> robotChecked = new List<bool>(); // フィルターのチェック状態
 
 
-        public Form1()
-        {
+        public Form1() {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void Form1_Load(object sender, EventArgs e) {
             string fileName = DateTime.Now.ToString("yyyyMMdd") + ".csv";
             fileName = "20210804.csv";
             string path = @"CSV_PowerData\" + fileName;
             // csvがなければ何もしない
-            if (System.IO.File.Exists(path))
-            {
+            if (System.IO.File.Exists(path)) {
                 SetPowerData(path);
             }
             comboBox1.SelectedIndex = 6;
             LoadColumnsMode();
+
+            addCheckCoumCbx.Text = addCheckCoumCbx.Checked.ToString();
         }
 
         /// <summary>
         ///データセット
         /// </summary>
         /// <param name="path"></param>
-        private void SetPowerData(string path)
-        {
+        private void SetPowerData(string path) {
             dataSet = new DataSet("データリスト");
             table = new DataTable("Table");
             int num = 0;
@@ -98,7 +94,6 @@ namespace DataGridView
                                 break;
                             }
                         }
-
                         string fx = double.Parse(csvData[8]).ToString("F2");
                         string fy = double.Parse(csvData[9]).ToString("F2");
                         string fz = double.Parse(csvData[10]).ToString("F2");
@@ -127,8 +122,7 @@ namespace DataGridView
         /// <summary>
         /// GridViewの共通設定
         /// </summary>
-        private void SetCommonGridView()
-        {
+        private void SetCommonGridView() {
             // ヘッダー列を中央揃え
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             // 列ヘッダー非表示
@@ -141,8 +135,7 @@ namespace DataGridView
             dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Descending);
 
             // 全ての列を右寄せ
-            for (int i = 0; i < dataGridView1.Columns.Count; i++)
-            {
+            for (int i = 0; i < dataGridView1.Columns.Count; i++) {
                 dataGridView1.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
 
@@ -175,14 +168,11 @@ namespace DataGridView
             // 変更するフォームの幅
             int formWidth = this.Width + totalWidth + scrollBarWidth + adjustWidth - dataGridView1.Width;
 
-            if (formWidth > 0)
-            {
-                if (formWidth < displayWidth)
-                {
+            if (formWidth > 0) {
+                if (formWidth < displayWidth) {
                     this.Width = formWidth;
                 }
-                else
-                {
+                else {
                     // ディスプレイの80％の大きさ
                     this.Width = (int)(displayWidth * 0.8);
                 }
@@ -194,28 +184,25 @@ namespace DataGridView
 
 
         // DataGridViewAutoSizeColumnsModeの確認
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+            try {
                 int num = comboBox1.SelectedIndex;
                 DataGridViewAutoSizeColumnsMode v = SetColumnsMode(num);
 
                 dataGridView1.AutoSizeColumnsMode = v;
                 label1.Text = v.ToString();
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Console.WriteLine(ex.Message);
             }
         }
 
-        private void LoadColumnsMode()
-        {
-            try
-            {
-                for (int i = 0; i < comboBox1.Items.Count; i++)
-                {
+        /// <summary>
+        /// リストボックスに名前を設定する
+        /// </summary>
+        private void LoadColumnsMode() {
+            try {
+                for (int i = 0; i < comboBox1.Items.Count; i++) {
                     int num = i;
                     DataGridViewAutoSizeColumnsMode v = SetColumnsMode(num);
 
@@ -223,8 +210,7 @@ namespace DataGridView
                     label1.Text = v.ToString();
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Console.WriteLine(ex.Message);
             }
         }
@@ -235,7 +221,7 @@ namespace DataGridView
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
-        private DataGridViewAutoSizeColumnsMode SetColumnsMode(int num ) {
+        private DataGridViewAutoSizeColumnsMode SetColumnsMode(int num) {
 
             DataGridViewAutoSizeColumnsMode v;
             switch (num) {
@@ -267,21 +253,105 @@ namespace DataGridView
 
 
         // 幅調整ボタン
-        private void WidthAdjjustBtn_Click(object sender, EventArgs e)
-        {
+        private void WidthAdjjustBtn_Click(object sender, EventArgs e) {
             //ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         // リスイズのイベント
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            if (diffWidth > 0)
-            {
+        private void Form1_Resize(object sender, EventArgs e) {
+            if (diffWidth > 0) {
                 dataGridView1.Width = this.Width - diffWidth;
                 dataGridView1.Height = this.Height - diffHeight;
             }
         }
 
+
+        /// <summary>
+        /// 列を追加する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddColumBtn_Click(object sender, EventArgs e) {
+
+            //列が自動的に作成されないようにする
+            dataGridView1.AutoGenerateColumns = false;
+            //データソースを設定する
+            //dataGridView1.DataSource = BindingSource1;
+#if true
+
+            //DataGridViewTextBoxColumn列を作成する
+            DataGridViewTextBoxColumn textColumn = new DataGridViewTextBoxColumn();
+
+
+            //データソースの"Column1"をバインドする
+            textColumn.DataPropertyName = "Column1";
+            //名前とヘッダーを設定する
+            textColumn.Name = "Column1";
+            textColumn.HeaderText = "Column1";
+            //列を追加する
+            //dataGridView1.Columns.Add(textColumn);
+
+            dataGridView1.Columns.Insert(0, textColumn);
+#endif
+        }
+
+
+        /// <summary>
+        /// チェックつき列の チェック状態を調べる
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckCountBtn_Click(object sender, EventArgs e) {
+            bool[] isChecked = new bool[dataGridView1.Rows.Count];
+            // チェックを調べる
+            if (addCheckCoumCbx.Checked) {
+                for (int i = 0; i < dataGridView1.Rows.Count; i++) {
+                    isChecked[i] = (bool)dataGridView1.Rows[i].Cells[0].Value;
+                }
+            }
+        }
+
+        private void AddCheckCoumCbx_CheckedChanged(object sender, EventArgs e) {
+
+            DataGridViewCheckBoxColumn column = new DataGridViewCheckBoxColumn();
+            string columName = "Check";
+
+            if (addCheckCoumCbx.Checked) {
+                column.Name = columName;
+                column.HeaderText = columName;
+                dataGridView1.Columns.Insert(0, column);
+                // チェックをつける
+                for (int i = 0; i < dataGridView1.Rows.Count; i++) {
+                    dataGridView1.Rows[i].Cells[0].Value = true;
+                }
+                // ソートの設定
+                foreach (DataGridViewColumn c in dataGridView1.Columns) {
+                    c.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+            }
+            else {
+                //列を削除する
+                dataGridView1.Columns.Remove(columName);
+                // ソートの設定
+                foreach (DataGridViewColumn c in dataGridView1.Columns) {
+                    c.SortMode = DataGridViewColumnSortMode.Automatic;
+                }
+            }
+        }
+
+        private void Label1_Click(object sender, EventArgs e) {
+
+        }
+
+        // チェックを反転する
+        private void ReverseCheckBtn_Click(object sender, EventArgs e) {
+            if (addCheckCoumCbx.Checked) {
+                for (int i = 0; i < dataGridView1.Rows.Count; i++) {
+
+                    dataGridView1.Rows[i].Cells[0].Value = !(bool)dataGridView1.Rows[i].Cells[0].Value;
+                }
+            }
+        }
     }
 }
