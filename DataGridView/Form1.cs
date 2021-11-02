@@ -8,24 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//app: データグリッドビューに関する
 
 namespace DataGridView
 {
     public partial class Form1 : Form
     {
-
-        // 幅の差
-        int diffWidth = 0;
-        // 高さの差
-        int diffHeight = 0;
-
-        // データセットを作成
-        private DataSet dataSet = new DataSet("データリスト");
-        // データテーブルを作成
-        DataTable table = new DataTable("Table");
-        // フィルターのチェック状態
-        List<bool> robotChecked = new List<bool>();
-
+        private int diffWidth = 0; // 幅の差
+        private int diffHeight = 0; // 高さの差
+        private DataSet dataSet = new DataSet("データリスト"); // データセットを作成
+        DataTable table = new DataTable("Table"); // データテーブルを作成
+        List<bool> robotChecked = new List<bool>(); // フィルターのチェック状態
 
 
         public Form1()
@@ -47,25 +40,21 @@ namespace DataGridView
             LoadColumnsMode();
         }
 
-
-
-
-
-        // データセット
-        void SetPowerData(string path)
+        /// <summary>
+        ///データセット
+        /// </summary>
+        /// <param name="path"></param>
+        private void SetPowerData(string path)
         {
-            int num = 0;
             dataSet = new DataSet("データリスト");
             table = new DataTable("Table");
-
-            try
-            {
+            int num = 0;
+            try {
                 // 初期化
                 table.Clear();
                 table.Columns.Clear();
                 dataSet.Clear();
                 dataSet.Tables.Clear();
-
                 // データテーブルに列を追加
                 table.Columns.Add("時刻");
                 table.Columns.Add("ロボット名");
@@ -76,44 +65,35 @@ namespace DataGridView
                 table.Columns.Add("Mx[Nm]");
                 table.Columns.Add("My[N]");
                 table.Columns.Add("Mz[N]");
-
                 // データセットにデータテーブルを追加
                 dataSet.Tables.Add(table);
-
 
                 //// テーブルにデータを追加
                 // 読み込みたいCSVファイルのパスを指定して開く
                 StreamReader sr = new StreamReader(path);
                 {
                     // 末尾まで繰り返す
-                    while (!sr.EndOfStream)
-                    {
+                    while (!sr.EndOfStream) {
                         string line = sr.ReadLine();
                         string[] csvData = line.Split(',');
                         string curPos = "";
 
                         // 空行は無視する
-                        if (line == "")
-                        {
+                        if (line == "") {
                             continue;
                         }
-                        if (csvData.Length != 14)
-                        {
+                        if (csvData.Length != 14) {
                             throw new Exception("データ数が間違えている");
                         }
 
-                        for (int i = 2; i < 8; i++)
-                        {
-                            if (double.TryParse(csvData[i].ToString(), out double d))
-                            {
-                                if (i > 2)
-                                {
+                        for (int i = 2; i < 8; i++) {
+                            if (double.TryParse(csvData[i].ToString(), out double d)) {
+                                if (i > 2) {
                                     curPos += ", ";
                                 }
                                 curPos += d.ToString("F3");
                             }
-                            else
-                            {
+                            else {
                                 curPos = "";
                                 break;
                             }
@@ -136,10 +116,10 @@ namespace DataGridView
                 SetCommonGridView();
 
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Console.WriteLine(ex.Message);
-                MessageBox.Show($"データの読み込み失敗({num + 1}行目)", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"データの読み込み失敗({num + 1}行目)", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -147,7 +127,7 @@ namespace DataGridView
         /// <summary>
         /// GridViewの共通設定
         /// </summary>
-        void SetCommonGridView()
+        private void SetCommonGridView()
         {
             // ヘッダー列を中央揃え
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -207,6 +187,8 @@ namespace DataGridView
                     this.Width = (int)(displayWidth * 0.8);
                 }
             }
+
+
         }
 
 
@@ -217,77 +199,26 @@ namespace DataGridView
             try
             {
                 int num = comboBox1.SelectedIndex;
-                DataGridViewAutoSizeColumnsMode v;
-                switch (num)
-                {
-                    case 0:
-                        v = DataGridViewAutoSizeColumnsMode.AllCells;
-                        break;
-                    case 1:
-                        v = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-                        break;
-                    case 2:
-                        v = DataGridViewAutoSizeColumnsMode.ColumnHeader;
-                        break;
-                    case 3:
-                        v = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-                        break;
-                    case 4:
-                        v = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
-                        break;
-                    case 5:
-                        v = DataGridViewAutoSizeColumnsMode.Fill;
-                        break;
-                    default:
-                        v = DataGridViewAutoSizeColumnsMode.None;
-                        break;
-                }
+                DataGridViewAutoSizeColumnsMode v = SetColumnsMode(num);
+
                 dataGridView1.AutoSizeColumnsMode = v;
                 label1.Text = v.ToString();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-
             }
-
         }
 
-
-        void LoadColumnsMode()
+        private void LoadColumnsMode()
         {
             try
             {
                 for (int i = 0; i < comboBox1.Items.Count; i++)
                 {
-                    //int num = comboBox1.SelectedIndex;
                     int num = i;
-                    DataGridViewAutoSizeColumnsMode v;
-                    switch (num)
-                    {
-                        case 0:
-                            v = DataGridViewAutoSizeColumnsMode.AllCells;
-                            break;
-                        case 1:
-                            v = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-                            break;
-                        case 2:
-                            v = DataGridViewAutoSizeColumnsMode.ColumnHeader;
-                            break;
-                        case 3:
-                            v = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-                            break;
-                        case 4:
-                            v = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
-                            break;
-                        case 5:
-                            v = DataGridViewAutoSizeColumnsMode.Fill;
-                            break;
-                        default:
-                            v = DataGridViewAutoSizeColumnsMode.None;
-                            break;
-                    }
-                    dataGridView1.AutoSizeColumnsMode = v;
+                    DataGridViewAutoSizeColumnsMode v = SetColumnsMode(num);
+
                     comboBox1.Items[i] = v.ToString();
                     label1.Text = v.ToString();
                 }
@@ -299,7 +230,44 @@ namespace DataGridView
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 番号からColumsModeを設定する
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        private DataGridViewAutoSizeColumnsMode SetColumnsMode(int num ) {
+
+            DataGridViewAutoSizeColumnsMode v;
+            switch (num) {
+                case 0:
+                    v = DataGridViewAutoSizeColumnsMode.AllCells;
+                    break;
+                case 1:
+                    v = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+                    break;
+                case 2:
+                    v = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+                    break;
+                case 3:
+                    v = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+                    break;
+                case 4:
+                    v = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
+                    break;
+                case 5:
+                    v = DataGridViewAutoSizeColumnsMode.Fill;
+                    break;
+                default:
+                    v = DataGridViewAutoSizeColumnsMode.None;
+                    break;
+            }
+            return v;
+        }
+
+
+
+        // 幅調整ボタン
+        private void WidthAdjjustBtn_Click(object sender, EventArgs e)
         {
             //ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
