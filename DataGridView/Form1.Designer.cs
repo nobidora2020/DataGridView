@@ -30,7 +30,7 @@ namespace DataGridViewUse
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.GridView = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.WidthAdjustBtn = new System.Windows.Forms.Button();
@@ -45,21 +45,22 @@ namespace DataGridViewUse
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // GridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(14, 18);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1022, 315);
-            this.dataGridView1.TabIndex = 17;
-            this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseClick);
-            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.DataGridView1_CurrentCellChanged);
+            this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridView.Location = new System.Drawing.Point(14, 18);
+            this.GridView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.GridView.Name = "GridView";
+            this.GridView.RowHeadersWidth = 51;
+            this.GridView.RowTemplate.Height = 24;
+            this.GridView.Size = new System.Drawing.Size(1022, 280);
+            this.GridView.TabIndex = 17;
+            this.GridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseClick);
             // 
             // comboBox1
             // 
@@ -94,7 +95,7 @@ namespace DataGridViewUse
             // WidthAdjustBtn
             // 
             this.WidthAdjustBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.WidthAdjustBtn.Location = new System.Drawing.Point(25, 422);
+            this.WidthAdjustBtn.Location = new System.Drawing.Point(41, 457);
             this.WidthAdjustBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.WidthAdjustBtn.Name = "WidthAdjustBtn";
             this.WidthAdjustBtn.Size = new System.Drawing.Size(84, 35);
@@ -105,9 +106,9 @@ namespace DataGridViewUse
             // 
             // addColumBtn
             // 
-            this.addColumBtn.Location = new System.Drawing.Point(728, 338);
+            this.addColumBtn.Location = new System.Drawing.Point(109, 3);
             this.addColumBtn.Name = "addColumBtn";
-            this.addColumBtn.Size = new System.Drawing.Size(128, 58);
+            this.addColumBtn.Size = new System.Drawing.Size(100, 60);
             this.addColumBtn.TabIndex = 21;
             this.addColumBtn.Text = "列を追加";
             this.addColumBtn.UseVisualStyleBackColor = true;
@@ -115,9 +116,9 @@ namespace DataGridViewUse
             // 
             // checkCountBtn
             // 
-            this.checkCountBtn.Location = new System.Drawing.Point(873, 338);
+            this.checkCountBtn.Location = new System.Drawing.Point(321, 3);
             this.checkCountBtn.Name = "checkCountBtn";
-            this.checkCountBtn.Size = new System.Drawing.Size(94, 72);
+            this.checkCountBtn.Size = new System.Drawing.Size(100, 60);
             this.checkCountBtn.TabIndex = 22;
             this.checkCountBtn.Text = "チェックを調べる";
             this.checkCountBtn.UseVisualStyleBackColor = true;
@@ -126,9 +127,9 @@ namespace DataGridViewUse
             // addCheckCoumCbx
             // 
             this.addCheckCoumCbx.Appearance = System.Windows.Forms.Appearance.Button;
-            this.addCheckCoumCbx.Location = new System.Drawing.Point(593, 341);
+            this.addCheckCoumCbx.Location = new System.Drawing.Point(3, 3);
             this.addCheckCoumCbx.Name = "addCheckCoumCbx";
-            this.addCheckCoumCbx.Size = new System.Drawing.Size(128, 58);
+            this.addCheckCoumCbx.Size = new System.Drawing.Size(100, 60);
             this.addCheckCoumCbx.TabIndex = 23;
             this.addCheckCoumCbx.Text = "チェック列add";
             this.addCheckCoumCbx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -137,9 +138,9 @@ namespace DataGridViewUse
             // 
             // reverseCheckBtn
             // 
-            this.reverseCheckBtn.Location = new System.Drawing.Point(873, 446);
+            this.reverseCheckBtn.Location = new System.Drawing.Point(3, 69);
             this.reverseCheckBtn.Name = "reverseCheckBtn";
-            this.reverseCheckBtn.Size = new System.Drawing.Size(94, 72);
+            this.reverseCheckBtn.Size = new System.Drawing.Size(100, 60);
             this.reverseCheckBtn.TabIndex = 22;
             this.reverseCheckBtn.Text = "チェックを反転";
             this.reverseCheckBtn.UseVisualStyleBackColor = true;
@@ -147,7 +148,7 @@ namespace DataGridViewUse
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(355, 353);
+            this.textBox1.Location = new System.Drawing.Point(357, 344);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(205, 86);
@@ -155,9 +156,9 @@ namespace DataGridViewUse
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(753, 472);
+            this.button1.Location = new System.Drawing.Point(215, 69);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 59);
+            this.button1.Size = new System.Drawing.Size(100, 60);
             this.button1.TabIndex = 25;
             this.button1.Text = "true";
             this.button1.UseVisualStyleBackColor = true;
@@ -165,9 +166,9 @@ namespace DataGridViewUse
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(753, 405);
+            this.button2.Location = new System.Drawing.Point(109, 69);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 59);
+            this.button2.Size = new System.Drawing.Size(100, 60);
             this.button2.TabIndex = 25;
             this.button2.Text = "false";
             this.button2.UseVisualStyleBackColor = true;
@@ -175,9 +176,9 @@ namespace DataGridViewUse
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(633, 405);
+            this.button3.Location = new System.Drawing.Point(215, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(76, 69);
+            this.button3.Size = new System.Drawing.Size(100, 60);
             this.button3.TabIndex = 26;
             this.button3.Text = "check状態";
             this.button3.UseVisualStyleBackColor = true;
@@ -189,7 +190,7 @@ namespace DataGridViewUse
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(355, 454);
+            this.textBox2.Location = new System.Drawing.Point(146, 445);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(205, 86);
@@ -197,45 +198,54 @@ namespace DataGridViewUse
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(136, 445);
+            this.textBox3.Location = new System.Drawing.Point(357, 445);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(163, 86);
+            this.textBox3.Size = new System.Drawing.Size(205, 86);
             this.textBox3.TabIndex = 24;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.addCheckCoumCbx);
+            this.flowLayoutPanel1.Controls.Add(this.addColumBtn);
+            this.flowLayoutPanel1.Controls.Add(this.button3);
+            this.flowLayoutPanel1.Controls.Add(this.checkCountBtn);
+            this.flowLayoutPanel1.Controls.Add(this.reverseCheckBtn);
+            this.flowLayoutPanel1.Controls.Add(this.button2);
+            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(581, 317);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(426, 195);
+            this.flowLayoutPanel1.TabIndex = 27;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1048, 543);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.addCheckCoumCbx);
-            this.Controls.Add(this.reverseCheckBtn);
-            this.Controls.Add(this.checkCountBtn);
-            this.Controls.Add(this.addColumBtn);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.WidthAdjustBtn);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.GridView);
             this.Font = new System.Drawing.Font("メイリオ", 9F);
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView GridView;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button WidthAdjustBtn;
@@ -250,6 +260,7 @@ namespace DataGridViewUse
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 
