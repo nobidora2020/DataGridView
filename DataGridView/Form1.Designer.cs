@@ -31,7 +31,7 @@ namespace DataGridViewUse
         {
             this.components = new System.ComponentModel.Container();
             this.GridView = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.SizeColumnsCmb = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.WidthAdjustBtn = new System.Windows.Forms.Button();
             this.addColumBtn = new System.Windows.Forms.Button();
@@ -62,11 +62,11 @@ namespace DataGridViewUse
             this.GridView.TabIndex = 17;
             this.GridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseClick);
             // 
-            // comboBox1
+            // SizeColumnsCmb
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.SizeColumnsCmb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SizeColumnsCmb.FormattingEnabled = true;
+            this.SizeColumnsCmb.Items.AddRange(new object[] {
             "0",
             "1",
             "2",
@@ -74,12 +74,12 @@ namespace DataGridViewUse
             "4",
             "5",
             "6"});
-            this.comboBox1.Location = new System.Drawing.Point(89, 384);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(236, 31);
-            this.comboBox1.TabIndex = 18;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.SizeColumnsCmb.Location = new System.Drawing.Point(89, 384);
+            this.SizeColumnsCmb.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.SizeColumnsCmb.Name = "SizeColumnsCmb";
+            this.SizeColumnsCmb.Size = new System.Drawing.Size(236, 31);
+            this.SizeColumnsCmb.TabIndex = 18;
+            this.SizeColumnsCmb.SelectedIndexChanged += new System.EventHandler(this.SizeColumnsCmb_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -227,7 +227,7 @@ namespace DataGridViewUse
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.SizeColumnsCmb);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.WidthAdjustBtn);
             this.Controls.Add(this.GridView);
@@ -246,7 +246,7 @@ namespace DataGridViewUse
 
         #endregion
         private System.Windows.Forms.DataGridView GridView;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox SizeColumnsCmb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button WidthAdjustBtn;
         private System.Windows.Forms.Button addColumBtn;

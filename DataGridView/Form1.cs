@@ -17,12 +17,10 @@ namespace DataGridViewUse {
         private DataSet dataSet = new DataSet("データリスト"); // データセットを作成
         DataTable table = new DataTable("Table"); // データテーブルを作成
         List<bool> robotChecked = new List<bool>(); // フィルターのチェック状態
-
-
+        
         public Form1() {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e) {
             string fileName = DateTime.Now.ToString("yyyyMMdd") + ".csv";
             fileName = "20210804.csv";
@@ -31,15 +29,12 @@ namespace DataGridViewUse {
             if (System.IO.File.Exists(path)) {
                 SetPowerData(path);
             }
-            comboBox1.SelectedIndex = 6;
             LoadColumnsMode();
-
+            SizeColumnsCmb.SelectedIndex = SizeColumnsCmb.Items.IndexOf(nameof(DataGridViewAutoSizeColumnsMode.Fill));
             addCheckCoumCbx.Text = addCheckCoumCbx.Checked.ToString();
-
             timer1.Interval = 10;
             timer1.Enabled = true;
         }
-
         /// <summary>
         ///データセット
         /// </summary>
@@ -121,7 +116,6 @@ namespace DataGridViewUse {
             }
         }
 
-
         /// <summary>
         /// GridViewの共通設定
         /// </summary>
@@ -184,19 +178,15 @@ namespace DataGridViewUse {
 
         }
 
-
-
         // DataGridViewAutoSizeColumnsModeの確認
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
-            try {
-                int num = comboBox1.SelectedIndex;
-                DataGridViewAutoSizeColumnsMode v = SetColumnsMode(num);
-
-                GridView.AutoSizeColumnsMode = v;
-                label1.Text = v.ToString();
-            }
-            catch (Exception ex) {
-                Console.WriteLine(ex.Message);
+        private void SizeColumnsCmb_SelectedIndexChanged(object sender, EventArgs e) {
+            
+            foreach (DataGridViewAutoSizeColumnsMode Value in Enum.GetValues(typeof(DataGridViewAutoSizeColumnsMode))) {
+                string name = Enum.GetName(typeof(DataGridViewAutoSizeColumnsMode), Value);
+                if (name == SizeColumnsCmb.Text) {
+                    GridView.AutoSizeColumnsMode = Value;
+                    label1.Text = Value.ToString();
+                }
             }
         }
 
@@ -204,63 +194,19 @@ namespace DataGridViewUse {
         /// リストボックスに名前を設定する
         /// </summary>
         private void LoadColumnsMode() {
-            try {
-                for (int i = 0; i < comboBox1.Items.Count; i++) {
-                    int num = i;
-                    DataGridViewAutoSizeColumnsMode v = SetColumnsMode(num);
-
-                    comboBox1.Items[i] = v.ToString();
-                    label1.Text = v.ToString();
-                }
-            }
-            catch (Exception ex) {
-                Console.WriteLine(ex.Message);
+            SizeColumnsCmb.Items.Clear();
+            foreach (DataGridViewAutoSizeColumnsMode Value in Enum.GetValues(typeof(DataGridViewAutoSizeColumnsMode))) {
+                string name = Enum.GetName(typeof(DataGridViewAutoSizeColumnsMode), Value);
+                SizeColumnsCmb.Items.Add(name);
+                SizeColumnsCmb.Text = name;
+                label1.Text = name;
             }
         }
-
-
-        /// <summary>
-        /// 番号からColumsModeを設定する
-        /// </summary>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        private DataGridViewAutoSizeColumnsMode SetColumnsMode(int num) {
-
-            DataGridViewAutoSizeColumnsMode v;
-            switch (num) {
-                case 0:
-                    v = DataGridViewAutoSizeColumnsMode.AllCells;
-                    break;
-                case 1:
-                    v = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-                    break;
-                case 2:
-                    v = DataGridViewAutoSizeColumnsMode.ColumnHeader;
-                    break;
-                case 3:
-                    v = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-                    break;
-                case 4:
-                    v = DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader;
-                    break;
-                case 5:
-                    v = DataGridViewAutoSizeColumnsMode.Fill;
-                    break;
-                default:
-                    v = DataGridViewAutoSizeColumnsMode.None;
-                    break;
-            }
-            return v;
-        }
-
-
-
         // 幅調整ボタン
         private void WidthAdjjustBtn_Click(object sender, EventArgs e) {
             //ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
             GridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
-
         // リスイズのイベント
         private void Form1_Resize(object sender, EventArgs e) {
             if (diffWidth > 0) {
@@ -268,8 +214,6 @@ namespace DataGridViewUse {
                 GridView.Height = this.Height - diffHeight;
             }
         }
-
-
         /// <summary>
         /// 列を追加する
         /// </summary>
@@ -298,8 +242,6 @@ namespace DataGridViewUse {
             GridView.Columns.Insert(0, textColumn);
 #endif
         }
-
-
         /// <summary>
         /// チェックつき列の チェック状態を調べる
         /// </summary>
@@ -314,7 +256,6 @@ namespace DataGridViewUse {
                 }
             }
         }
-
         private void AddCheckCoumCbx_CheckedChanged(object sender, EventArgs e) {
             string columName = "行選択";
             DataGridViewCheckBoxColumn column = new DataGridViewCheckBoxColumn();
@@ -341,11 +282,9 @@ namespace DataGridViewUse {
                 GridView.AllowUserToResizeRows = true;
             }
         }
-
         private void Label1_Click(object sender, EventArgs e) {
 
         }
-
         // チェックを反転する
         private void ReverseCheckBtn_Click(object sender, EventArgs e) {
             if (addCheckCoumCbx.Checked) {
@@ -355,8 +294,6 @@ namespace DataGridViewUse {
                 }
             }
         }
-
-
         private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
 
             if (addCheckCoumCbx.Checked == true && e.RowIndex == -1 && e.ColumnIndex == 0) {
@@ -380,30 +317,34 @@ namespace DataGridViewUse {
                 }
             }
         }
-
-
-
         private void Button1_Click(object sender, EventArgs e) {
             GridView.Rows[2].Cells[0].Value = true;
         }
-
         private void Button2_Click(object sender, EventArgs e) {
             GridView.Rows[2].Cells[0].Value = false;
         }
-
         private void Button3_Click(object sender, EventArgs e) {
-            bool b= (bool)GridView.Rows[2].Cells[0].Value;
-            textBox1.Text = b.ToString();
+            try {
+                bool b= (bool)GridView.Rows[2].Cells[0].Value;
+                textBox1.Text = b.ToString();
+            }
+            catch (Exception ex) {
+                Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name + ex.Message);
+            }
         }
-
         private void Timer1_Tick(object sender, EventArgs e) {
-            if (addCheckCoumCbx.Checked) {
-                string s = "";
-                for (int i = 0; i < 10; i++) {
-                    bool b = (bool)GridView.Rows[i].Cells[0].Value;
-                    s += b.ToString() + Environment.NewLine;
+            try {
+                if (addCheckCoumCbx.Checked) {
+                    string s = "";
+                    for (int i = 0; i < 10; i++) {
+                        bool b = (bool)GridView.Rows[i].Cells[0].Value;
+                        s += b.ToString() + Environment.NewLine;
+                    }
+                    textBox2.Text = s;
                 }
-                textBox2.Text = s;
+            }
+            catch (Exception ex) {
+                Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name + ex.Message);
             }
         }
     }
