@@ -17,7 +17,7 @@ namespace DataGridViewUse {
         private DataSet dataSet = new DataSet("データリスト"); // データセットを作成
         DataTable table = new DataTable("Table"); // データテーブルを作成
         List<bool> robotChecked = new List<bool>(); // フィルターのチェック状態
-        
+
         public Form1() {
             InitializeComponent();
         }
@@ -180,7 +180,7 @@ namespace DataGridViewUse {
 
         // DataGridViewAutoSizeColumnsModeの確認
         private void SizeColumnsCmb_SelectedIndexChanged(object sender, EventArgs e) {
-            
+
             foreach (DataGridViewAutoSizeColumnsMode Value in Enum.GetValues(typeof(DataGridViewAutoSizeColumnsMode))) {
                 string name = Enum.GetName(typeof(DataGridViewAutoSizeColumnsMode), Value);
                 if (name == SizeColumnsCmb.Text) {
@@ -220,16 +220,13 @@ namespace DataGridViewUse {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void AddColumBtn_Click(object sender, EventArgs e) {
-
             //列が自動的に作成されないようにする
             GridView.AutoGenerateColumns = false;
             //データソースを設定する
             //dataGridView1.DataSource = BindingSource1;
 #if true
-
             //DataGridViewTextBoxColumn列を作成する
             DataGridViewTextBoxColumn textColumn = new DataGridViewTextBoxColumn();
-
 
             //データソースの"Column1"をバインドする
             textColumn.DataPropertyName = "Column1";
@@ -238,7 +235,6 @@ namespace DataGridViewUse {
             textColumn.HeaderText = "Column1";
             //列を追加する
             //dataGridView1.Columns.Add(textColumn);
-
             GridView.Columns.Insert(0, textColumn);
 #endif
         }
@@ -256,6 +252,7 @@ namespace DataGridViewUse {
                 }
             }
         }
+        // チェック列を追加
         private void AddCheckCoumCbx_CheckedChanged(object sender, EventArgs e) {
             string columName = "行選択";
             DataGridViewCheckBoxColumn column = new DataGridViewCheckBoxColumn();
@@ -289,8 +286,10 @@ namespace DataGridViewUse {
         private void ReverseCheckBtn_Click(object sender, EventArgs e) {
             if (addCheckCoumCbx.Checked) {
                 for (int i = 0; i < GridView.Rows.Count; i++) {
-
-                    GridView.Rows[i].Cells[0].Value = !(bool)GridView.Rows[i].Cells[0].Value;
+                    var n = GridView.Rows[i].Cells[0].Value;
+                    if (n != null) {
+                        GridView.Rows[i].Cells[0].Value = !(bool)GridView.Rows[i].Cells[0].Value;
+                    }
                 }
             }
         }
@@ -317,16 +316,20 @@ namespace DataGridViewUse {
                 }
             }
         }
-        private void Button1_Click(object sender, EventArgs e) {
+        private void TrueBtn_Click(object sender, EventArgs e) {
             GridView.Rows[2].Cells[0].Value = true;
         }
-        private void Button2_Click(object sender, EventArgs e) {
+        private void FalseBtn_Click(object sender, EventArgs e) {
             GridView.Rows[2].Cells[0].Value = false;
         }
-        private void Button3_Click(object sender, EventArgs e) {
+        //チェック状態を調べる 
+        private void CheckCheckStateBtn_Click(object sender, EventArgs e) {
             try {
-                bool b= (bool)GridView.Rows[2].Cells[0].Value;
-                textBox1.Text = b.ToString();
+                var n = GridView.Rows[2].Cells[0].Value;
+                if (n != null) {
+                    var b = (bool)GridView.Rows[2].Cells[0].Value;
+                    textBox1.Text = b.ToString();
+                }
             }
             catch (Exception ex) {
                 Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name + ex.Message);
@@ -337,8 +340,11 @@ namespace DataGridViewUse {
                 if (addCheckCoumCbx.Checked) {
                     string s = "";
                     for (int i = 0; i < 10; i++) {
-                        bool b = (bool)GridView.Rows[i].Cells[0].Value;
-                        s += b.ToString() + Environment.NewLine;
+                        var n = GridView.Rows[i].Cells[0].Value;
+                        if (n != null) {
+                            var b = (bool)GridView.Rows[i].Cells[0].Value;
+                            s += b.ToString() + Environment.NewLine;
+                        }
                     }
                     textBox2.Text = s;
                 }

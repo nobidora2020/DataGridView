@@ -39,9 +39,9 @@ namespace DataGridViewUse
             this.addCheckCoumCbx = new System.Windows.Forms.CheckBox();
             this.reverseCheckBtn = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.trueBtn = new System.Windows.Forms.Button();
+            this.falseBtn = new System.Windows.Forms.Button();
+            this.CheckCheckStateBtn = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -154,35 +154,35 @@ namespace DataGridViewUse
             this.textBox1.Size = new System.Drawing.Size(205, 86);
             this.textBox1.TabIndex = 24;
             // 
-            // button1
+            // trueBtn
             // 
-            this.button1.Location = new System.Drawing.Point(215, 69);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 60);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "true";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.trueBtn.Location = new System.Drawing.Point(215, 69);
+            this.trueBtn.Name = "trueBtn";
+            this.trueBtn.Size = new System.Drawing.Size(100, 60);
+            this.trueBtn.TabIndex = 25;
+            this.trueBtn.Text = "true";
+            this.trueBtn.UseVisualStyleBackColor = true;
+            this.trueBtn.Click += new System.EventHandler(this.TrueBtn_Click);
             // 
-            // button2
+            // falseBtn
             // 
-            this.button2.Location = new System.Drawing.Point(109, 69);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 60);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "false";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.falseBtn.Location = new System.Drawing.Point(109, 69);
+            this.falseBtn.Name = "falseBtn";
+            this.falseBtn.Size = new System.Drawing.Size(100, 60);
+            this.falseBtn.TabIndex = 25;
+            this.falseBtn.Text = "false";
+            this.falseBtn.UseVisualStyleBackColor = true;
+            this.falseBtn.Click += new System.EventHandler(this.FalseBtn_Click);
             // 
-            // button3
+            // CheckCheckStateBtn
             // 
-            this.button3.Location = new System.Drawing.Point(215, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 60);
-            this.button3.TabIndex = 26;
-            this.button3.Text = "check状態";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.CheckCheckStateBtn.Location = new System.Drawing.Point(215, 3);
+            this.CheckCheckStateBtn.Name = "CheckCheckStateBtn";
+            this.CheckCheckStateBtn.Size = new System.Drawing.Size(100, 60);
+            this.CheckCheckStateBtn.TabIndex = 26;
+            this.CheckCheckStateBtn.Text = "check状態";
+            this.CheckCheckStateBtn.UseVisualStyleBackColor = true;
+            this.CheckCheckStateBtn.Click += new System.EventHandler(this.CheckCheckStateBtn_Click);
             // 
             // timer1
             // 
@@ -208,11 +208,11 @@ namespace DataGridViewUse
             // 
             this.flowLayoutPanel1.Controls.Add(this.addCheckCoumCbx);
             this.flowLayoutPanel1.Controls.Add(this.addColumBtn);
-            this.flowLayoutPanel1.Controls.Add(this.button3);
+            this.flowLayoutPanel1.Controls.Add(this.CheckCheckStateBtn);
             this.flowLayoutPanel1.Controls.Add(this.checkCountBtn);
             this.flowLayoutPanel1.Controls.Add(this.reverseCheckBtn);
-            this.flowLayoutPanel1.Controls.Add(this.button2);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Controls.Add(this.falseBtn);
+            this.flowLayoutPanel1.Controls.Add(this.trueBtn);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(581, 317);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(426, 195);
@@ -254,9 +254,9 @@ namespace DataGridViewUse
         private System.Windows.Forms.CheckBox addCheckCoumCbx;
         private System.Windows.Forms.Button reverseCheckBtn;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button trueBtn;
+        private System.Windows.Forms.Button falseBtn;
+        private System.Windows.Forms.Button CheckCheckStateBtn;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
