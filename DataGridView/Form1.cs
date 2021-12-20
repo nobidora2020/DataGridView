@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using System.Windows.Forms;
+using System.Runtime.InteropServices;
 //app: データグリッドビューに関する
 
 namespace DataGridViewUse {
@@ -177,8 +180,11 @@ namespace DataGridViewUse {
 
 
         }
-
-        // DataGridViewAutoSizeColumnsModeの確認
+        /// <summary>
+        /// DataGridViewAutoSizeColumnsModeの確認
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SizeColumnsCmb_SelectedIndexChanged(object sender, EventArgs e) {
 
             foreach (DataGridViewAutoSizeColumnsMode Value in Enum.GetValues(typeof(DataGridViewAutoSizeColumnsMode))) {
@@ -189,7 +195,6 @@ namespace DataGridViewUse {
                 }
             }
         }
-
         /// <summary>
         /// リストボックスに名前を設定する
         /// </summary>
@@ -202,12 +207,20 @@ namespace DataGridViewUse {
                 label1.Text = name;
             }
         }
-        // 幅調整ボタン
+        /// <summary>
+        /// 幅調整ボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WidthAdjjustBtn_Click(object sender, EventArgs e) {
             //ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
             GridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
-        // リスイズのイベント
+        /// <summary>
+        /// リスイズのイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Resize(object sender, EventArgs e) {
             if (diffWidth > 0) {
                 GridView.Width = this.Width - diffWidth;
@@ -252,7 +265,11 @@ namespace DataGridViewUse {
                 }
             }
         }
-        // チェック列を追加
+        /// <summary>
+        /// チェック列を追加
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddCheckCoumCbx_CheckedChanged(object sender, EventArgs e) {
             string columName = "行選択";
             DataGridViewCheckBoxColumn column = new DataGridViewCheckBoxColumn();
@@ -282,7 +299,11 @@ namespace DataGridViewUse {
         private void Label1_Click(object sender, EventArgs e) {
 
         }
-        // チェックを反転する
+        /// <summary>
+        /// チェックを反転する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ReverseCheckBtn_Click(object sender, EventArgs e) {
             if (addCheckCoumCbx.Checked) {
                 for (int i = 0; i < GridView.Rows.Count; i++) {
@@ -322,7 +343,11 @@ namespace DataGridViewUse {
         private void FalseBtn_Click(object sender, EventArgs e) {
             GridView.Rows[2].Cells[0].Value = false;
         }
-        //チェック状態を調べる 
+        /// <summary>
+        ///チェック状態を調べる 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CheckCheckStateBtn_Click(object sender, EventArgs e) {
             try {
                 var n = GridView.Rows[2].Cells[0].Value;
@@ -347,6 +372,7 @@ namespace DataGridViewUse {
                         }
                     }
                     textBox2.Text = s;
+
                 }
             }
             catch (Exception ex) {

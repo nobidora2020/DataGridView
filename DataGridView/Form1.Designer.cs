@@ -74,7 +74,7 @@ namespace DataGridViewUse
             "4",
             "5",
             "6"});
-            this.SizeColumnsCmb.Location = new System.Drawing.Point(89, 384);
+            this.SizeColumnsCmb.Location = new System.Drawing.Point(14, 349);
             this.SizeColumnsCmb.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SizeColumnsCmb.Name = "SizeColumnsCmb";
             this.SizeColumnsCmb.Size = new System.Drawing.Size(236, 31);
@@ -85,7 +85,7 @@ namespace DataGridViewUse
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(87, 356);
+            this.label1.Location = new System.Drawing.Point(12, 321);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 23);
             this.label1.TabIndex = 19;
@@ -95,7 +95,7 @@ namespace DataGridViewUse
             // WidthAdjustBtn
             // 
             this.WidthAdjustBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.WidthAdjustBtn.Location = new System.Drawing.Point(41, 457);
+            this.WidthAdjustBtn.Location = new System.Drawing.Point(214, 308);
             this.WidthAdjustBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.WidthAdjustBtn.Name = "WidthAdjustBtn";
             this.WidthAdjustBtn.Size = new System.Drawing.Size(84, 35);
@@ -116,7 +116,7 @@ namespace DataGridViewUse
             // 
             // checkCountBtn
             // 
-            this.checkCountBtn.Location = new System.Drawing.Point(321, 3);
+            this.checkCountBtn.Location = new System.Drawing.Point(3, 69);
             this.checkCountBtn.Name = "checkCountBtn";
             this.checkCountBtn.Size = new System.Drawing.Size(100, 60);
             this.checkCountBtn.TabIndex = 22;
@@ -138,7 +138,7 @@ namespace DataGridViewUse
             // 
             // reverseCheckBtn
             // 
-            this.reverseCheckBtn.Location = new System.Drawing.Point(3, 69);
+            this.reverseCheckBtn.Location = new System.Drawing.Point(109, 69);
             this.reverseCheckBtn.Name = "reverseCheckBtn";
             this.reverseCheckBtn.Size = new System.Drawing.Size(100, 60);
             this.reverseCheckBtn.TabIndex = 22;
@@ -148,7 +148,7 @@ namespace DataGridViewUse
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(357, 344);
+            this.textBox1.Location = new System.Drawing.Point(430, 311);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(205, 86);
@@ -156,7 +156,7 @@ namespace DataGridViewUse
             // 
             // trueBtn
             // 
-            this.trueBtn.Location = new System.Drawing.Point(215, 69);
+            this.trueBtn.Location = new System.Drawing.Point(3, 135);
             this.trueBtn.Name = "trueBtn";
             this.trueBtn.Size = new System.Drawing.Size(100, 60);
             this.trueBtn.TabIndex = 25;
@@ -166,7 +166,7 @@ namespace DataGridViewUse
             // 
             // falseBtn
             // 
-            this.falseBtn.Location = new System.Drawing.Point(109, 69);
+            this.falseBtn.Location = new System.Drawing.Point(215, 69);
             this.falseBtn.Name = "falseBtn";
             this.falseBtn.Size = new System.Drawing.Size(100, 60);
             this.falseBtn.TabIndex = 25;
@@ -190,7 +190,7 @@ namespace DataGridViewUse
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(146, 445);
+            this.textBox2.Location = new System.Drawing.Point(219, 412);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(205, 86);
@@ -198,7 +198,7 @@ namespace DataGridViewUse
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(357, 445);
+            this.textBox3.Location = new System.Drawing.Point(430, 412);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(205, 86);
@@ -213,9 +213,9 @@ namespace DataGridViewUse
             this.flowLayoutPanel1.Controls.Add(this.reverseCheckBtn);
             this.flowLayoutPanel1.Controls.Add(this.falseBtn);
             this.flowLayoutPanel1.Controls.Add(this.trueBtn);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(581, 317);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(653, 317);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(426, 195);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(354, 195);
             this.flowLayoutPanel1.TabIndex = 27;
             // 
             // Form1
