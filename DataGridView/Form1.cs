@@ -37,6 +37,10 @@ namespace DataGridViewUse {
             addCheckCoumCbx.Text = addCheckCoumCbx.Checked.ToString();
             timer1.Interval = 10;
             timer1.Enabled = true;
+
+            //セルを選択すると行全体が選択されるようにする
+            GridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
         }
         /// <summary>
         ///データセット
