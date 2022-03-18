@@ -27,8 +27,7 @@ namespace DataGridViewUse
             InitializeComponent();
         }
         private void Form1_Load(object sender, EventArgs e) {
-            string fileName = DateTime.Now.ToString("yyyyMMdd") + ".csv";
-            fileName = "20210804.csv";
+            string fileName = "20210804.csv";
             string path = @"CSV_PowerData\" + fileName;
             // csvがなければ何もしない
             if (System.IO.File.Exists(path)) {
@@ -121,49 +120,8 @@ namespace DataGridViewUse
         /// GridViewの共通設定
         /// </summary>
         private void SetCommonGridView() {
-            // ヘッダー列を中央揃え
-            GridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            // 列ヘッダー非表示
-            GridView.RowHeadersVisible = false;
-            // 行の追加をを無効
-            GridView.AllowUserToAddRows = false;
-            //行の高さをユーザーが変更できないようにする
-            GridView.AllowUserToResizeRows = false;
-            //降順で並び替えを行う (最新のデータを最上部に表示する)
-            GridView.Sort(GridView.Columns[0], ListSortDirection.Descending);
-            // 全ての列を右寄せ
-            for (int i = 0; i < GridView.Columns.Count; i++) {
-                GridView.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            }
-            // 文字列、日付は左寄せ
-            GridView.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            GridView.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            ////すべての行の高さを自動調整する
-            GridView.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
-            //すべての列の幅を自動調整する
-            GridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            //幅の差
-            diffWidth = this.Width - GridView.Width;
-            //高さの差
-            diffHeight = this.Height - GridView.Height;
-            ///
-            /// データテーブルの幅に合わせて、フォーム幅を自動調整する
-            ///
-            //ディスプレイの幅
-            int displayWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
-            // 各列の幅の合計
-            int totalWidth = GridView.Columns.GetColumnsWidth(DataGridViewElementStates.Visible);
-            // スクロールバーの幅
-            int scrollBarWidth = new VScrollBar().Width;
-            // 調整幅
-            int adjustWidth = 3;
-            // 変更するフォームの幅
-            int formWidth = this.Width + totalWidth + scrollBarWidth + adjustWidth - GridView.Width;
-            if (formWidth > 0) {
-                this.Width = formWidth < displayWidth
-                    ? formWidth 
-                    : (int)(displayWidth * 0.8);  // ディスプレイの80％の大きさ
-            }
+            SettingGridView settingGridView = new SettingGridView();
+            settingGridView.SetGrid(this.GridView, this.Width, this.Height, ref diffWidth, ref diffHeight);
         }
 
         /// <summary>
