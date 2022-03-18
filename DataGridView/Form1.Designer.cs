@@ -90,7 +90,6 @@ namespace DataGridViewUse
             this.label1.Size = new System.Drawing.Size(113, 18);
             this.label1.TabIndex = 19;
             this.label1.Text = "SizeColumnsMode";
-            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // WidthAdjustBtn
             // 

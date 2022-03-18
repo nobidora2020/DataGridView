@@ -70,16 +70,17 @@ namespace DataGridViewUse
                     // 末尾まで繰り返す
                     while (!sr.EndOfStream) {
                         string line = sr.ReadLine();
+                        
                         // 空行は無視する
                         if (line == string.Empty) {
                             continue;
                         }
                         string[] csvData = line.Split(',');
-                        string curPos = string.Empty;
-
                         if (csvData.Length != 14) {
                             throw new Exception("データ数が間違えている");
                         }
+
+                        string curPos = string.Empty;
 
                         for (int i = 2; i < 8; i++) {
                             if (double.TryParse(csvData[i].ToString(), out double d)) {
@@ -224,8 +225,8 @@ namespace DataGridViewUse
                 for (int i = 0; i < GridView.Rows.Count; i++) {
                     GridView.Rows[i].Cells[0].Value = true;
                 }
-                //並び替えができないようにする
                 foreach (DataGridViewColumn c in GridView.Columns) {
+                    //並び替えが不可
                     c.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
                 GridView.AllowUserToResizeRows = false;
@@ -233,15 +234,12 @@ namespace DataGridViewUse
             else {
                 //列を削除する
                 GridView.Columns.Remove(columName);
-                //並び替えができるようにする
                 foreach (DataGridViewColumn c in GridView.Columns) {
+                    //並び替えが可能
                     c.SortMode = DataGridViewColumnSortMode.Automatic;
                 }
                 GridView.AllowUserToResizeRows = true;
             }
-        }
-        private void Label1_Click(object sender, EventArgs e) {
-
         }
         /// <summary>
         /// チェックを反転する
