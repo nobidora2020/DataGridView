@@ -74,10 +74,10 @@ namespace DataGridViewUse
             "4",
             "5",
             "6"});
-            this.SizeColumnsCmb.Location = new System.Drawing.Point(14, 349);
+            this.SizeColumnsCmb.Location = new System.Drawing.Point(159, 371);
             this.SizeColumnsCmb.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SizeColumnsCmb.Name = "SizeColumnsCmb";
-            this.SizeColumnsCmb.Size = new System.Drawing.Size(236, 31);
+            this.SizeColumnsCmb.Size = new System.Drawing.Size(236, 26);
             this.SizeColumnsCmb.TabIndex = 18;
             this.SizeColumnsCmb.SelectedIndexChanged += new System.EventHandler(this.SizeColumnsCmb_SelectedIndexChanged);
             // 
@@ -85,9 +85,9 @@ namespace DataGridViewUse
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 321);
+            this.label1.Location = new System.Drawing.Point(173, 330);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 23);
+            this.label1.Size = new System.Drawing.Size(113, 18);
             this.label1.TabIndex = 19;
             this.label1.Text = "SizeColumnsMode";
             this.label1.Click += new System.EventHandler(this.Label1_Click);
@@ -95,7 +95,7 @@ namespace DataGridViewUse
             // WidthAdjustBtn
             // 
             this.WidthAdjustBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.WidthAdjustBtn.Location = new System.Drawing.Point(214, 308);
+            this.WidthAdjustBtn.Location = new System.Drawing.Point(319, 330);
             this.WidthAdjustBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.WidthAdjustBtn.Name = "WidthAdjustBtn";
             this.WidthAdjustBtn.Size = new System.Drawing.Size(84, 35);
@@ -220,9 +220,9 @@ namespace DataGridViewUse
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1048, 543);
+            this.ClientSize = new System.Drawing.Size(853, 557);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);

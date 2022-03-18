@@ -13,13 +13,15 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 //app: データグリッドビューに関する
 
-namespace DataGridViewUse {
-    public partial class Form1 : Form {
+namespace DataGridViewUse
+{
+    public partial class Form1 : Form
+    {
         private int diffWidth = 0; // 幅の差
         private int diffHeight = 0; // 高さの差
         private DataSet dataSet = new DataSet("データリスト"); // データセットを作成
-        DataTable table = new DataTable("Table"); // データテーブルを作成
-        List<bool> robotChecked = new List<bool>(); // フィルターのチェック状態
+        private DataTable table = new DataTable("Table"); // データテーブルを作成
+        private List<bool> robotChecked = new List<bool>(); // フィルターのチェック状態
 
         public Form1() {
             InitializeComponent();
@@ -37,10 +39,8 @@ namespace DataGridViewUse {
             addCheckCoumCbx.Text = addCheckCoumCbx.Checked.ToString();
             timer1.Interval = 10;
             timer1.Enabled = true;
-
             //セルを選択すると行全体が選択されるようにする
             GridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
         }
         /// <summary>
         ///データセット
@@ -57,18 +57,13 @@ namespace DataGridViewUse {
                 dataSet.Clear();
                 dataSet.Tables.Clear();
                 // データテーブルに列を追加
-                table.Columns.Add("時刻");
-                table.Columns.Add("ロボット名");
-                table.Columns.Add("現在位置");
-                table.Columns.Add("Fx[N]");
-                table.Columns.Add("Fy[N]");
-                table.Columns.Add("Fz[N]");
-                table.Columns.Add("Mx[Nm]");
-                table.Columns.Add("My[N]");
-                table.Columns.Add("Mz[N]");
+                var header = new string[] { "時刻", "ロボット名", "現在位置",
+                    "Fx[N]", "Fy[N]", "Fz[N]", "Mx[Nm]", "My[N]", "Mz[N]" };
+                foreach (var item in header) {
+                    table.Columns.Add(item);
+                }
                 // データセットにデータテーブルを追加
                 dataSet.Tables.Add(table);
-
                 //// テーブルにデータを追加
                 // 読み込みたいCSVファイルのパスを指定して開く
                 StreamReader sr = new StreamReader(path);
@@ -76,13 +71,13 @@ namespace DataGridViewUse {
                     // 末尾まで繰り返す
                     while (!sr.EndOfStream) {
                         string line = sr.ReadLine();
-                        string[] csvData = line.Split(',');
-                        string curPos = "";
-
                         // 空行は無視する
-                        if (line == "") {
+                        if (line == string.Empty) {
                             continue;
                         }
+                        string[] csvData = line.Split(',');
+                        string curPos = string.Empty;
+
                         if (csvData.Length != 14) {
                             throw new Exception("データ数が間違えている");
                         }
@@ -95,7 +90,7 @@ namespace DataGridViewUse {
                                 curPos += d.ToString("F3");
                             }
                             else {
-                                curPos = "";
+                                curPos = string.Empty;
                                 break;
                             }
                         }
@@ -118,11 +113,10 @@ namespace DataGridViewUse {
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);
-                MessageBox.Show($"データの読み込み失敗({num + 1}行目)", "",
+                MessageBox.Show($"データの読み込み失敗({num + 1}行目)", string.Empty,
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
         /// <summary>
         /// GridViewの共通設定
         /// </summary>
@@ -137,27 +131,21 @@ namespace DataGridViewUse {
             GridView.AllowUserToResizeRows = false;
             //降順で並び替えを行う (最新のデータを最上部に表示する)
             GridView.Sort(GridView.Columns[0], ListSortDirection.Descending);
-
             // 全ての列を右寄せ
             for (int i = 0; i < GridView.Columns.Count; i++) {
                 GridView.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
-
             // 文字列、日付は左寄せ
             GridView.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             GridView.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
             ////すべての行の高さを自動調整する
             GridView.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
             //すべての列の幅を自動調整する
             GridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-
             //幅の差
             diffWidth = this.Width - GridView.Width;
             //高さの差
             diffHeight = this.Height - GridView.Height;
-
-
             ///
             /// データテーブルの幅に合わせて、フォーム幅を自動調整する
             ///
@@ -171,30 +159,24 @@ namespace DataGridViewUse {
             int adjustWidth = 3;
             // 変更するフォームの幅
             int formWidth = this.Width + totalWidth + scrollBarWidth + adjustWidth - GridView.Width;
-
             if (formWidth > 0) {
-                if (formWidth < displayWidth) {
-                    this.Width = formWidth;
-                }
-                else {
-                    // ディスプレイの80％の大きさ
-                    this.Width = (int)(displayWidth * 0.8);
-                }
+                this.Width = formWidth < displayWidth
+                    ? formWidth 
+                    : (int)(displayWidth * 0.8);  // ディスプレイの80％の大きさ
             }
-
-
         }
+
         /// <summary>
         /// DataGridViewAutoSizeColumnsModeの確認
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SizeColumnsCmb_SelectedIndexChanged(object sender, EventArgs e) {
-
             foreach (DataGridViewAutoSizeColumnsMode Value in Enum.GetValues(typeof(DataGridViewAutoSizeColumnsMode))) {
                 string name = Enum.GetName(typeof(DataGridViewAutoSizeColumnsMode), Value);
                 if (name == SizeColumnsCmb.Text) {
                     GridView.AutoSizeColumnsMode = Value;
+                    //GridView.Rows[1]. = true;
                     label1.Text = Value.ToString();
                 }
             }
@@ -319,7 +301,6 @@ namespace DataGridViewUse {
             }
         }
         private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
-
             if (addCheckCoumCbx.Checked == true && e.RowIndex == -1 && e.ColumnIndex == 0) {
                 DataGridView dgv = (DataGridView)sender;
                 List<Point> selectedCell = new List<Point>();
@@ -354,11 +335,11 @@ namespace DataGridViewUse {
         /// <param name="e"></param>
         private void CheckCheckStateBtn_Click(object sender, EventArgs e) {
             try {
-                var n = GridView.Rows[2].Cells[0].Value;
-                if (n != null) {
-                    var b = (bool)GridView.Rows[2].Cells[0].Value;
-                    textBox1.Text = b.ToString();
+                if (GridView.Rows[2].Cells[0].Value == null) {
+                    return;
                 }
+                var b = (bool)GridView.Rows[2].Cells[0].Value;
+                textBox1.Text = b.ToString();
             }
             catch (Exception ex) {
                 Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name + ex.Message);
@@ -367,7 +348,7 @@ namespace DataGridViewUse {
         private void Timer1_Tick(object sender, EventArgs e) {
             try {
                 if (addCheckCoumCbx.Checked) {
-                    string s = "";
+                    string s = string.Empty;
                     for (int i = 0; i < 10; i++) {
                         var n = GridView.Rows[i].Cells[0].Value;
                         if (n != null) {
@@ -376,7 +357,6 @@ namespace DataGridViewUse {
                         }
                     }
                     textBox2.Text = s;
-
                 }
             }
             catch (Exception ex) {
