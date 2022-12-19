@@ -8,15 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.Windows.Forms;
 using System.Runtime.InteropServices;
 //app: データグリッドビューに関する
 
-namespace DataGridViewUse
-{
-    public partial class Form1 : Form
-    {
+namespace DataGridViewUse {
+    public partial class Form1 : Form {
         private int diffWidth = 0; // 幅の差
         private int diffHeight = 0; // 高さの差
         private DataSet dataSet = new DataSet("データリスト"); // データセットを作成
@@ -29,10 +25,20 @@ namespace DataGridViewUse
         private void Form1_Load(object sender, EventArgs e) {
             string fileName = "20210804.csv";
             string path = @"CSV_PowerData\" + fileName;
-            // csvがなければ何もしない
-            if (System.IO.File.Exists(path)) {
-                SetPowerData(path);
+
+            if (false) {
+                // 手動データ
+                ManualData3();
             }
+            else {
+
+                // csvがなければ何もしない
+                if (System.IO.File.Exists(path)) {
+                    SetPowerData(path);
+                }
+            }
+
+            this.Text = "ElapsedTimeAndTCP";
             LoadColumnsMode();
             SizeColumnsCmb.SelectedIndex = SizeColumnsCmb.Items.IndexOf(nameof(DataGridViewAutoSizeColumnsMode.Fill));
             addCheckCoumCbx.Text = addCheckCoumCbx.Checked.ToString();
@@ -41,6 +47,28 @@ namespace DataGridViewUse
             //セルを選択すると行全体が選択されるようにする
             GridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
+
+        private void ManualData3() {
+            dataSet = new DataSet("データリスト");
+            table = new DataTable("Table");
+
+            var header = new string[] { "#", "Mkg色", "経過時間(下限) [min]", "経過時間(上限) [min]", "砥石径(最小)", "砥石径(最大)", "実行処理" };
+            foreach (var item in header) {
+                table.Columns.Add(item);
+            }
+            // データセットにデータテーブルを追加
+            dataSet.Tables.Add(table);
+            table.Rows.Add("1", "青", "0", "10", "30", "50", "ドレッシング");
+            table.Rows.Add("2", "赤", "10", "20", "30", "50", "ドレッシング");
+            table.Rows.Add("3", "緑", "20", "30", "30", "50", "砥石交換(ツールA)");
+            table.Rows.Add("4", "黄", "30", "40", "30", "50", "砥石交換(ツールB)");
+
+            // データグリッドにテーブルを表示する
+            this.GridView.DataSource = table;
+            // データグリッドの設定
+            SetCommonGridView();
+        }
+
         /// <summary>
         ///データセット
         /// </summary>
@@ -55,42 +83,46 @@ namespace DataGridViewUse
                 table.Columns.Clear();
                 dataSet.Clear();
                 dataSet.Tables.Clear();
+
                 // データテーブルに列を追加
                 var header = new string[] { "時刻", "ロボット名", "現在位置",
                     "Fx[N]", "Fy[N]", "Fz[N]", "Mx[Nm]", "My[N]", "Mz[N]" };
+
                 foreach (var item in header) {
                     table.Columns.Add(item);
                 }
-                // データセットにデータテーブルを追加
-                dataSet.Tables.Add(table);
+
                 //// テーブルにデータを追加
                 // 読み込みたいCSVファイルのパスを指定して開く
                 StreamReader sr = new StreamReader(path);
                 {
                     // 末尾まで繰り返す
                     while (!sr.EndOfStream) {
+
                         string line = sr.ReadLine();
-                        
+
                         // 空行は無視する
                         if (line == string.Empty) {
                             continue;
                         }
+                        
                         string[] csvData = line.Split(',');
+
                         if (csvData.Length != 14) {
                             throw new Exception("データ数が間違えている");
                         }
 
-                        string curPos = string.Empty;
 
+                        string currentLocation = string.Empty;
                         for (int i = 2; i < 8; i++) {
                             if (double.TryParse(csvData[i].ToString(), out double d)) {
                                 if (i > 2) {
-                                    curPos += ", ";
+                                    currentLocation += ", ";
                                 }
-                                curPos += d.ToString("F3");
+                                currentLocation += d.ToString("F3");
                             }
                             else {
-                                curPos = string.Empty;
+                                currentLocation = string.Empty;
                                 break;
                             }
                         }
@@ -101,9 +133,11 @@ namespace DataGridViewUse
                         string my = double.Parse(csvData[12]).ToString("F3");
                         string mz = double.Parse(csvData[13]).ToString("F3");
 
-                        table.Rows.Add(csvData[0], csvData[1], curPos, fx, fy, fz, mx, my, mz);
+                        table.Rows.Add(csvData[0], csvData[1], currentLocation,
+                                        fx, fy, fz, mx, my, mz);
                         num++;
                     }
+
                 }
                 // データグリッドにテーブルを表示する
                 this.GridView.DataSource = table;
@@ -116,6 +150,7 @@ namespace DataGridViewUse
                 MessageBox.Show($"データの読み込み失敗({num + 1}行目)", string.Empty,
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
         }
         /// <summary>
         /// GridViewの共通設定
@@ -135,7 +170,6 @@ namespace DataGridViewUse
                 string name = Enum.GetName(typeof(DataGridViewAutoSizeColumnsMode), Value);
                 if (name == SizeColumnsCmb.Text) {
                     GridView.AutoSizeColumnsMode = Value;
-                    //GridView.Rows[1]. = true;
                     label1.Text = Value.ToString();
                 }
             }
@@ -181,8 +215,7 @@ namespace DataGridViewUse
             //列が自動的に作成されないようにする
             GridView.AutoGenerateColumns = false;
             //データソースを設定する
-            //dataGridView1.DataSource = BindingSource1;
-#if true
+
             //DataGridViewTextBoxColumn列を作成する
             DataGridViewTextBoxColumn textColumn = new DataGridViewTextBoxColumn();
 
@@ -191,10 +224,9 @@ namespace DataGridViewUse
             //名前とヘッダーを設定する
             textColumn.Name = "Column1";
             textColumn.HeaderText = "Column1";
+
             //列を追加する
-            //dataGridView1.Columns.Add(textColumn);
             GridView.Columns.Insert(0, textColumn);
-#endif
         }
         /// <summary>
         /// チェックつき列の チェック状態を調べる
@@ -258,7 +290,8 @@ namespace DataGridViewUse
         }
         private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
             if (addCheckCoumCbx.Checked == true && e.RowIndex == -1 && e.ColumnIndex == 0) {
-                DataGridView dgv = (DataGridView)sender;
+
+                System.Windows.Forms.DataGridView dgv = (System.Windows.Forms.DataGridView)sender;
                 List<Point> selectedCell = new List<Point>();
                 // 選択状態のセルを記憶
                 foreach (DataGridViewCell c in GridView.SelectedCells) {

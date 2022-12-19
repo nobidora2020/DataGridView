@@ -18,7 +18,7 @@ namespace DataGridViewUse
         /// <param name="Height"></param>
         /// <param name="diffWidth"></param>
         /// <param name="diffHeight"></param>
-        public void SetGrid(DataGridView grid, int Width, int Height, ref int diffWidth, ref int diffHeight) {
+        public void SetGrid(System.Windows.Forms.DataGridView grid, int Width, int Height, ref int diffWidth, ref int diffHeight) {
             // ヘッダー列を中央揃え
             grid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             // 列ヘッダー非表示
