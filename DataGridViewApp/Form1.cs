@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-//app: データグリッドビューに関する
+//app: データグリッドビュー
 
 namespace DataGridViewUse {
     public partial class Form1 : Form {
@@ -17,15 +17,15 @@ namespace DataGridViewUse {
         private int diffHeight = 0; // 高さの差
         private DataSet dataSet = new DataSet("データリスト"); // データセットを作成
         private DataTable table = new DataTable("Table"); // データテーブルを作成
-        private List<bool> robotChecked = new List<bool>(); // フィルターのチェック状態
+        private readonly List<bool> robotChecked = new List<bool>(); // フィルターのチェック状態
 
         public Form1() {
             InitializeComponent();
         }
+
         private void Form1_Load(object sender, EventArgs e) {
             string fileName = "20210804.csv";
             string path = @"CSV_PowerData\" + fileName;
-
             if (false) {
                 // 手動データ
                 ManualData3();
@@ -48,6 +48,7 @@ namespace DataGridViewUse {
             GridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
+        // マニュアルデータ
         private void ManualData3() {
             dataSet = new DataSet("データリスト");
             table = new DataTable("Table");
@@ -59,7 +60,7 @@ namespace DataGridViewUse {
             // データセットにデータテーブルを追加
             dataSet.Tables.Add(table);
             table.Rows.Add("1", "青", "0", "10", "30", "50", "ドレッシング");
-            table.Rows.Add("2", "赤", "10", "20", "30", "50", "ドレッシング");
+            table.Rows.Add("2", "赤", "10", "20", "30", "50", "ドレッシ  ング");
             table.Rows.Add("3", "緑", "20", "30", "30", "50", "砥石交換(ツールA)");
             table.Rows.Add("4", "黄", "30", "40", "30", "50", "砥石交換(ツールB)");
 
@@ -137,8 +138,8 @@ namespace DataGridViewUse {
                                         fx, fy, fz, mx, my, mz);
                         num++;
                     }
-
                 }
+
                 // データグリッドにテーブルを表示する
                 this.GridView.DataSource = table;
                 // データグリッドの設定
@@ -159,7 +160,6 @@ namespace DataGridViewUse {
             SettingGridView settingGridView = new SettingGridView();
             settingGridView.SetGrid(this.GridView, this.Width, this.Height, ref diffWidth, ref diffHeight);
         }
-
         /// <summary>
         /// DataGridViewAutoSizeColumnsModeの確認
         /// </summary>
@@ -288,6 +288,8 @@ namespace DataGridViewUse {
                 }
             }
         }
+
+        // セルをクリックする
         private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
             if (addCheckCoumCbx.Checked == true && e.RowIndex == -1 && e.ColumnIndex == 0) {
 
@@ -311,12 +313,16 @@ namespace DataGridViewUse {
                 }
             }
         }
+
+        // tureボタン
         private void TrueBtn_Click(object sender, EventArgs e) {
             GridView.Rows[2].Cells[0].Value = true;
         }
+        // falseボタン
         private void FalseBtn_Click(object sender, EventArgs e) {
             GridView.Rows[2].Cells[0].Value = false;
         }
+        
         /// <summary>
         ///チェック状態を調べる 
         /// </summary>
@@ -334,18 +340,19 @@ namespace DataGridViewUse {
                 Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name + ex.Message);
             }
         }
+        // タイマー
         private void Timer1_Tick(object sender, EventArgs e) {
             try {
                 if (addCheckCoumCbx.Checked) {
-                    string s = string.Empty;
+                    string str = string.Empty;
                     for (int i = 0; i < 10; i++) {
                         var n = GridView.Rows[i].Cells[0].Value;
                         if (n != null) {
                             var b = (bool)GridView.Rows[i].Cells[0].Value;
-                            s += b.ToString() + Environment.NewLine;
+                            str += b.ToString() + Environment.NewLine;
                         }
                     }
-                    textBox2.Text = s;
+                    textBox2.Text = str;
                 }
             }
             catch (Exception ex) {

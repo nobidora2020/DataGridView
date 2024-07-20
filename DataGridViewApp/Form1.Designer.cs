@@ -62,7 +62,7 @@ namespace DataGridViewUse
             this.GridView.Name = "GridView";
             this.GridView.RowHeadersWidth = 51;
             this.GridView.RowTemplate.Height = 24;
-            this.GridView.Size = new System.Drawing.Size(829, 196);
+            this.GridView.Size = new System.Drawing.Size(943, 234);
             this.GridView.TabIndex = 17;
             this.GridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseClick);
             // 
@@ -77,25 +77,25 @@ namespace DataGridViewUse
             "4",
             "5",
             "6"});
-            this.SizeColumnsCmb.Location = new System.Drawing.Point(16, 411);
+            this.SizeColumnsCmb.Location = new System.Drawing.Point(368, 255);
             this.SizeColumnsCmb.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SizeColumnsCmb.Name = "SizeColumnsCmb";
-            this.SizeColumnsCmb.Size = new System.Drawing.Size(236, 26);
+            this.SizeColumnsCmb.Size = new System.Drawing.Size(236, 35);
             this.SizeColumnsCmb.TabIndex = 18;
             this.SizeColumnsCmb.SelectedIndexChanged += new System.EventHandler(this.SizeColumnsCmb_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 370);
+            this.label1.Location = new System.Drawing.Point(374, 308);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 18);
+            this.label1.Size = new System.Drawing.Size(170, 27);
             this.label1.TabIndex = 19;
             this.label1.Text = "SizeColumnsMode";
             // 
             // WidthAdjustBtn
             // 
-            this.WidthAdjustBtn.Location = new System.Drawing.Point(176, 370);
+            this.WidthAdjustBtn.Location = new System.Drawing.Point(269, 255);
             this.WidthAdjustBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.WidthAdjustBtn.Name = "WidthAdjustBtn";
             this.WidthAdjustBtn.Size = new System.Drawing.Size(84, 35);
@@ -116,7 +116,7 @@ namespace DataGridViewUse
             // 
             // checkCountBtn
             // 
-            this.checkCountBtn.Location = new System.Drawing.Point(3, 69);
+            this.checkCountBtn.Location = new System.Drawing.Point(321, 3);
             this.checkCountBtn.Name = "checkCountBtn";
             this.checkCountBtn.Size = new System.Drawing.Size(100, 60);
             this.checkCountBtn.TabIndex = 22;
@@ -138,7 +138,7 @@ namespace DataGridViewUse
             // 
             // reverseCheckBtn
             // 
-            this.reverseCheckBtn.Location = new System.Drawing.Point(109, 69);
+            this.reverseCheckBtn.Location = new System.Drawing.Point(3, 69);
             this.reverseCheckBtn.Name = "reverseCheckBtn";
             this.reverseCheckBtn.Size = new System.Drawing.Size(100, 60);
             this.reverseCheckBtn.TabIndex = 22;
@@ -148,15 +148,16 @@ namespace DataGridViewUse
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(266, 372);
+            this.textBox1.Location = new System.Drawing.Point(28, 396);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(205, 86);
             this.textBox1.TabIndex = 24;
+            this.textBox1.Text = "1";
             // 
             // trueBtn
             // 
-            this.trueBtn.Location = new System.Drawing.Point(3, 135);
+            this.trueBtn.Location = new System.Drawing.Point(215, 69);
             this.trueBtn.Name = "trueBtn";
             this.trueBtn.Size = new System.Drawing.Size(100, 60);
             this.trueBtn.TabIndex = 25;
@@ -166,7 +167,7 @@ namespace DataGridViewUse
             // 
             // falseBtn
             // 
-            this.falseBtn.Location = new System.Drawing.Point(215, 69);
+            this.falseBtn.Location = new System.Drawing.Point(109, 69);
             this.falseBtn.Name = "falseBtn";
             this.falseBtn.Size = new System.Drawing.Size(100, 60);
             this.falseBtn.TabIndex = 25;
@@ -190,19 +191,21 @@ namespace DataGridViewUse
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(47, 476);
+            this.textBox2.Location = new System.Drawing.Point(28, 493);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(205, 86);
             this.textBox2.TabIndex = 24;
+            this.textBox2.Text = "2";
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(258, 476);
+            this.textBox3.Location = new System.Drawing.Point(250, 396);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(205, 86);
             this.textBox3.TabIndex = 24;
+            this.textBox3.Text = "3";
             // 
             // flowLayoutPanel1
             // 
@@ -213,14 +216,15 @@ namespace DataGridViewUse
             this.flowLayoutPanel1.Controls.Add(this.reverseCheckBtn);
             this.flowLayoutPanel1.Controls.Add(this.falseBtn);
             this.flowLayoutPanel1.Controls.Add(this.trueBtn);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(487, 372);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(492, 384);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(354, 195);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(463, 195);
             this.flowLayoutPanel1.TabIndex = 27;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(747, 211);
+            this.button1.Location = new System.Drawing.Point(867, 249);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 45);
@@ -231,7 +235,7 @@ namespace DataGridViewUse
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(635, 211);
+            this.button2.Location = new System.Drawing.Point(755, 249);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(94, 45);
@@ -242,10 +246,10 @@ namespace DataGridViewUse
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 211);
+            this.button3.Location = new System.Drawing.Point(10, 249);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 45);
+            this.button3.Size = new System.Drawing.Size(135, 45);
             this.button3.TabIndex = 20;
             this.button3.Text = "選択行削除";
             this.button3.UseVisualStyleBackColor = true;
@@ -253,7 +257,7 @@ namespace DataGridViewUse
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(112, 211);
+            this.button4.Location = new System.Drawing.Point(151, 249);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(94, 45);
@@ -264,7 +268,7 @@ namespace DataGridViewUse
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 600);
             this.Controls.Add(this.flowLayoutPanel1);
