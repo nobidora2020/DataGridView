@@ -68,6 +68,7 @@ namespace DataGridViewUse
             // 
             // SizeColumnsCmb
             // 
+            this.SizeColumnsCmb.Font = new System.Drawing.Font("メイリオ", 8F);
             this.SizeColumnsCmb.FormattingEnabled = true;
             this.SizeColumnsCmb.Items.AddRange(new object[] {
             "0",
@@ -77,25 +78,26 @@ namespace DataGridViewUse
             "4",
             "5",
             "6"});
-            this.SizeColumnsCmb.Location = new System.Drawing.Point(361, 311);
+            this.SizeColumnsCmb.Location = new System.Drawing.Point(11, 331);
             this.SizeColumnsCmb.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SizeColumnsCmb.Name = "SizeColumnsCmb";
-            this.SizeColumnsCmb.Size = new System.Drawing.Size(236, 35);
+            this.SizeColumnsCmb.Size = new System.Drawing.Size(236, 32);
             this.SizeColumnsCmb.TabIndex = 18;
             this.SizeColumnsCmb.SelectedIndexChanged += new System.EventHandler(this.SizeColumnsCmb_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(603, 314);
+            this.label1.Font = new System.Drawing.Font("メイリオ", 8F);
+            this.label1.Location = new System.Drawing.Point(12, 302);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(170, 27);
+            this.label1.Size = new System.Drawing.Size(151, 24);
             this.label1.TabIndex = 19;
             this.label1.Text = "SizeColumnsMode";
             // 
             // WidthAdjustBtn
             // 
-            this.WidthAdjustBtn.Location = new System.Drawing.Point(251, 305);
+            this.WidthAdjustBtn.Location = new System.Drawing.Point(371, 305);
             this.WidthAdjustBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.WidthAdjustBtn.Name = "WidthAdjustBtn";
             this.WidthAdjustBtn.Size = new System.Drawing.Size(102, 45);
@@ -251,7 +253,7 @@ namespace DataGridViewUse
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(10, 305);
+            this.button3.Location = new System.Drawing.Point(488, 302);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(135, 45);
@@ -261,7 +263,7 @@ namespace DataGridViewUse
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(151, 305);
+            this.button4.Location = new System.Drawing.Point(629, 302);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(94, 45);
