@@ -9,16 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 //app: データグリッドビュー
 
 namespace DataGridViewUse {
     public partial class Form1 : Form {
-        private int diffWidth = 0; // 幅の差
+        private int diffWidth = 0;  // 幅の差
         private int diffHeight = 0; // 高さの差
-        private DataSet dataSet = new DataSet("データリスト"); // データセットを作成
-        private DataTable table = new DataTable("Table"); // データテーブルを作成
+        private DataSet dataSet = new DataSet("データリスト");       // データセットを作成
+        private DataTable table = new DataTable("Table");            // データテーブルを作成
         private readonly List<bool> robotChecked = new List<bool>(); // フィルターのチェック状態
         private bool isManualData = false;
+        private bool firstColumnsMode = true;
+        private string titleName = string.Empty;
+
 
         public Form1() {
             InitializeComponent();
@@ -161,11 +165,11 @@ namespace DataGridViewUse {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SizeColumnsCmb_SelectedIndexChanged(object sender, EventArgs e) {
-            foreach (DataGridViewAutoSizeColumnsMode Value in Enum.GetValues(typeof(DataGridViewAutoSizeColumnsMode))) {
-                string name = Enum.GetName(typeof(DataGridViewAutoSizeColumnsMode), Value);
+            foreach (DataGridViewAutoSizeColumnsMode value in Enum.GetValues(typeof(DataGridViewAutoSizeColumnsMode))) {
+                string name = Enum.GetName(typeof(DataGridViewAutoSizeColumnsMode), value);
                 if (name == SizeColumnsCmb.Text) {
-                    GridView.AutoSizeColumnsMode = Value;
-                    label1.Text = Value.ToString();
+                    GridView.AutoSizeColumnsMode = value;
+                    ViewColumnsMode(value.ToString());
                 }
             }
         }
@@ -178,7 +182,7 @@ namespace DataGridViewUse {
                 string name = Enum.GetName(typeof(DataGridViewAutoSizeColumnsMode), Value);
                 SizeColumnsCmb.Items.Add(name);
                 SizeColumnsCmb.Text = name;
-                label1.Text = name;
+                ViewColumnsMode(name);
             }
         }
         /// <summary>
@@ -354,6 +358,15 @@ namespace DataGridViewUse {
             catch (Exception ex) {
                 Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name + ex.Message);
             }
+        }
+
+        // 現在のColumnsModeをタイトルに表示する
+        private void ViewColumnsMode(string columsMode) {
+            if (firstColumnsMode) {
+                titleName = this.Text;
+                firstColumnsMode = false;
+            }
+            this.Text = $"{titleName} : {columsMode}";
         }
     }
 }
