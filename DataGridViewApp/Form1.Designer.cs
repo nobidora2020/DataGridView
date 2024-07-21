@@ -45,9 +45,9 @@ namespace DataGridViewUse
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.applyBtn = new System.Windows.Forms.Button();
+            this.cancelBtn = new System.Windows.Forms.Button();
+            this.removeLineBtn = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -61,7 +61,7 @@ namespace DataGridViewUse
             this.GridView.Name = "GridView";
             this.GridView.RowHeadersWidth = 51;
             this.GridView.RowTemplate.Height = 24;
-            this.GridView.Size = new System.Drawing.Size(969, 290);
+            this.GridView.Size = new System.Drawing.Size(969, 317);
             this.GridView.TabIndex = 17;
             this.GridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseClick);
             // 
@@ -77,7 +77,7 @@ namespace DataGridViewUse
             "4",
             "5",
             "6"});
-            this.SizeColumnsCmb.Location = new System.Drawing.Point(12, 310);
+            this.SizeColumnsCmb.Location = new System.Drawing.Point(14, 343);
             this.SizeColumnsCmb.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SizeColumnsCmb.Name = "SizeColumnsCmb";
             this.SizeColumnsCmb.Size = new System.Drawing.Size(236, 35);
@@ -86,7 +86,7 @@ namespace DataGridViewUse
             // 
             // WidthAdjustBtn
             // 
-            this.WidthAdjustBtn.Location = new System.Drawing.Point(371, 305);
+            this.WidthAdjustBtn.Location = new System.Drawing.Point(281, 337);
             this.WidthAdjustBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.WidthAdjustBtn.Name = "WidthAdjustBtn";
             this.WidthAdjustBtn.Size = new System.Drawing.Size(102, 45);
@@ -125,7 +125,7 @@ namespace DataGridViewUse
             this.addCheckCoumCbx.Name = "addCheckCoumCbx";
             this.addCheckCoumCbx.Size = new System.Drawing.Size(100, 60);
             this.addCheckCoumCbx.TabIndex = 23;
-            this.addCheckCoumCbx.Text = "チェック列add";
+            this.addCheckCoumCbx.Text = "☑列add";
             this.addCheckCoumCbx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.addCheckCoumCbx.UseVisualStyleBackColor = true;
             this.addCheckCoumCbx.CheckedChanged += new System.EventHandler(this.AddCheckCoumCbx_CheckedChanged);
@@ -137,16 +137,16 @@ namespace DataGridViewUse
             this.reverseCheckBtn.Name = "reverseCheckBtn";
             this.reverseCheckBtn.Size = new System.Drawing.Size(100, 60);
             this.reverseCheckBtn.TabIndex = 22;
-            this.reverseCheckBtn.Text = "チェックを反転";
+            this.reverseCheckBtn.Text = "レを反転";
             this.reverseCheckBtn.UseVisualStyleBackColor = true;
             this.reverseCheckBtn.Click += new System.EventHandler(this.ReverseCheckBtn_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 384);
+            this.textBox1.Location = new System.Drawing.Point(14, 401);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(205, 76);
+            this.textBox1.Size = new System.Drawing.Size(205, 70);
             this.textBox1.TabIndex = 24;
             this.textBox1.Text = "1";
             // 
@@ -189,19 +189,19 @@ namespace DataGridViewUse
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 466);
+            this.textBox2.Location = new System.Drawing.Point(14, 483);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(205, 76);
+            this.textBox2.Size = new System.Drawing.Size(205, 70);
             this.textBox2.TabIndex = 24;
             this.textBox2.Text = "2";
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(234, 384);
+            this.textBox3.Location = new System.Drawing.Point(236, 401);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(205, 76);
+            this.textBox3.Size = new System.Drawing.Size(205, 70);
             this.textBox3.TabIndex = 24;
             this.textBox3.Text = "3";
             // 
@@ -214,45 +214,45 @@ namespace DataGridViewUse
             this.flowLayoutPanel1.Controls.Add(this.reverseCheckBtn);
             this.flowLayoutPanel1.Controls.Add(this.falseBtn);
             this.flowLayoutPanel1.Controls.Add(this.trueBtn);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(488, 384);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(517, 401);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(463, 152);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(463, 141);
             this.flowLayoutPanel1.TabIndex = 27;
             // 
-            // button1
+            // applyBtn
             // 
-            this.button1.Location = new System.Drawing.Point(889, 305);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 45);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "適用";
-            this.button1.UseVisualStyleBackColor = true;
+            this.applyBtn.Location = new System.Drawing.Point(845, 337);
+            this.applyBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.applyBtn.Name = "applyBtn";
+            this.applyBtn.Size = new System.Drawing.Size(135, 45);
+            this.applyBtn.TabIndex = 20;
+            this.applyBtn.Text = "適用";
+            this.applyBtn.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // cancelBtn
             // 
-            this.button2.Location = new System.Drawing.Point(790, 305);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 45);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "キャンセル";
-            this.button2.UseVisualStyleBackColor = true;
+            this.cancelBtn.Location = new System.Drawing.Point(686, 337);
+            this.cancelBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.Size = new System.Drawing.Size(135, 45);
+            this.cancelBtn.TabIndex = 20;
+            this.cancelBtn.Text = "キャンセル";
+            this.cancelBtn.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // removeLineBtn
             // 
-            this.button3.Location = new System.Drawing.Point(488, 302);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(135, 45);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "選択行削除";
-            this.button3.UseVisualStyleBackColor = true;
+            this.removeLineBtn.Location = new System.Drawing.Point(527, 337);
+            this.removeLineBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.removeLineBtn.Name = "removeLineBtn";
+            this.removeLineBtn.Size = new System.Drawing.Size(135, 45);
+            this.removeLineBtn.TabIndex = 20;
+            this.removeLineBtn.Text = "選択行削除";
+            this.removeLineBtn.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(629, 302);
+            this.button4.Location = new System.Drawing.Point(389, 337);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(94, 45);
@@ -272,9 +272,9 @@ namespace DataGridViewUse
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.SizeColumnsCmb);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.removeLineBtn);
+            this.Controls.Add(this.cancelBtn);
+            this.Controls.Add(this.applyBtn);
             this.Controls.Add(this.WidthAdjustBtn);
             this.Controls.Add(this.GridView);
             this.Font = new System.Drawing.Font("メイリオ", 9F);
@@ -306,9 +306,9 @@ namespace DataGridViewUse
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button applyBtn;
+        private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.Button removeLineBtn;
         private System.Windows.Forms.Button button4;
     }
 }
