@@ -57,7 +57,7 @@ namespace DataGridViewUse
             // GridView
             // 
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridView.Location = new System.Drawing.Point(12, 5);
+            this.GridView.Location = new System.Drawing.Point(11, 6);
             this.GridView.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.GridView.Name = "GridView";
             this.GridView.RowHeadersWidth = 51;
@@ -238,7 +238,6 @@ namespace DataGridViewUse
             this.button1.TabIndex = 20;
             this.button1.Text = "適用";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.WidthAdjjustBtn_Click);
             // 
             // button2
             // 
@@ -249,7 +248,6 @@ namespace DataGridViewUse
             this.button2.TabIndex = 20;
             this.button2.Text = "キャンセル";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.WidthAdjjustBtn_Click);
             // 
             // button3
             // 
@@ -260,7 +258,6 @@ namespace DataGridViewUse
             this.button3.TabIndex = 20;
             this.button3.Text = "選択行削除";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.WidthAdjjustBtn_Click);
             // 
             // button4
             // 
