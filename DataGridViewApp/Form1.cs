@@ -18,6 +18,7 @@ namespace DataGridViewUse {
         private DataSet dataSet = new DataSet("データリスト"); // データセットを作成
         private DataTable table = new DataTable("Table"); // データテーブルを作成
         private readonly List<bool> robotChecked = new List<bool>(); // フィルターのチェック状態
+        private bool isManualData = false;
 
         public Form1() {
             InitializeComponent();
@@ -26,18 +27,16 @@ namespace DataGridViewUse {
         private void Form1_Load(object sender, EventArgs e) {
             string fileName = "20210804.csv";
             string path = @"CSV_PowerData\" + fileName;
-            if (false) {
+            if (isManualData) {
                 // 手動データ
                 ManualData3();
             }
             else {
-
                 // csvがなければ何もしない
                 if (System.IO.File.Exists(path)) {
                     SetPowerData(path);
                 }
             }
-
             this.Text = "ElapsedTimeAndTCP";
             LoadColumnsMode();
             SizeColumnsCmb.SelectedIndex = SizeColumnsCmb.Items.IndexOf(nameof(DataGridViewAutoSizeColumnsMode.Fill));
@@ -87,8 +86,8 @@ namespace DataGridViewUse {
 
                 // データテーブルに列を追加
                 var header = new string[] { "時刻", "ロボット名", "現在位置",
-                    "Fx[N]", "Fy[N]", "Fz[N]", "Mx[Nm]", "My[N]", "Mz[N]" };
-
+                                            "Fx[N]", "Fy[N]", "Fz[N]",
+                                            "Mx[Nm]", "My[N]", "Mz[N]" };
                 foreach (var item in header) {
                     table.Columns.Add(item);
                 }
@@ -99,22 +98,18 @@ namespace DataGridViewUse {
                 {
                     // 末尾まで繰り返す
                     while (!sr.EndOfStream) {
-
                         string line = sr.ReadLine();
-
-                        // 空行は無視する
-                        if (line == string.Empty) {
-                            continue;
-                        }
-                        
                         string[] csvData = line.Split(',');
+                        string currentLocation = string.Empty;  //現在位置
 
-                        if (csvData.Length != 14) {
-                            throw new Exception("データ数が間違えている");
+                        if (line == string.Empty) {  // 空行は無視する
+                            continue;  
+                        }
+                        if (csvData.Length != 14) { 
+                            throw new Exception("データ数が間違えている"); 
                         }
 
-
-                        string currentLocation = string.Empty;
+                        // ロボットTCPの位置と座標(x,y,z,rx,ry,rz) 6つパラメータをカンマで結合する
                         for (int i = 2; i < 8; i++) {
                             if (double.TryParse(csvData[i].ToString(), out double d)) {
                                 if (i > 2) {
@@ -196,7 +191,7 @@ namespace DataGridViewUse {
             GridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
         /// <summary>
-        /// リスイズのイベント
+        /// リサイズのイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -261,7 +256,7 @@ namespace DataGridViewUse {
                     //並び替えが不可
                     c.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
-                GridView.AllowUserToResizeRows = false;
+                GridView.AllowUserToResizeRows = false; 
             }
             else {
                 //列を削除する
@@ -340,6 +335,7 @@ namespace DataGridViewUse {
                 Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod().Name + ex.Message);
             }
         }
+
         // タイマー
         private void Timer1_Tick(object sender, EventArgs e) {
             try {
