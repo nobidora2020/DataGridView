@@ -40,7 +40,7 @@ namespace DataGridViewUse
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.trueBtn = new System.Windows.Forms.Button();
             this.falseBtn = new System.Windows.Forms.Button();
-            this.CheckCheckStateBtn = new System.Windows.Forms.Button();
+            this.checkStateBtn = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@ namespace DataGridViewUse
             this.applyBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.removeLineBtn = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.addLineBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -77,7 +77,7 @@ namespace DataGridViewUse
             "4",
             "5",
             "6"});
-            this.SizeColumnsCmb.Location = new System.Drawing.Point(14, 343);
+            this.SizeColumnsCmb.Location = new System.Drawing.Point(14, 342);
             this.SizeColumnsCmb.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.SizeColumnsCmb.Name = "SizeColumnsCmb";
             this.SizeColumnsCmb.Size = new System.Drawing.Size(236, 35);
@@ -93,7 +93,7 @@ namespace DataGridViewUse
             this.WidthAdjustBtn.TabIndex = 20;
             this.WidthAdjustBtn.Text = "幅調整";
             this.WidthAdjustBtn.UseVisualStyleBackColor = true;
-            this.WidthAdjustBtn.Click += new System.EventHandler(this.WidthAdjjustBtn_Click);
+            this.WidthAdjustBtn.Click += new System.EventHandler(this.WidthAdjustBtn_Click);
             // 
             // addColumBtn
             // 
@@ -172,16 +172,16 @@ namespace DataGridViewUse
             this.falseBtn.UseVisualStyleBackColor = true;
             this.falseBtn.Click += new System.EventHandler(this.FalseBtn_Click);
             // 
-            // CheckCheckStateBtn
+            // checkStateBtn
             // 
-            this.CheckCheckStateBtn.Location = new System.Drawing.Point(205, 1);
-            this.CheckCheckStateBtn.Margin = new System.Windows.Forms.Padding(1);
-            this.CheckCheckStateBtn.Name = "CheckCheckStateBtn";
-            this.CheckCheckStateBtn.Size = new System.Drawing.Size(100, 60);
-            this.CheckCheckStateBtn.TabIndex = 26;
-            this.CheckCheckStateBtn.Text = "check状態";
-            this.CheckCheckStateBtn.UseVisualStyleBackColor = true;
-            this.CheckCheckStateBtn.Click += new System.EventHandler(this.CheckCheckStateBtn_Click);
+            this.checkStateBtn.Location = new System.Drawing.Point(205, 1);
+            this.checkStateBtn.Margin = new System.Windows.Forms.Padding(1);
+            this.checkStateBtn.Name = "checkStateBtn";
+            this.checkStateBtn.Size = new System.Drawing.Size(100, 60);
+            this.checkStateBtn.TabIndex = 26;
+            this.checkStateBtn.Text = "check状態";
+            this.checkStateBtn.UseVisualStyleBackColor = true;
+            this.checkStateBtn.Click += new System.EventHandler(this.CheckStateBtn_Click);
             // 
             // timer1
             // 
@@ -189,9 +189,10 @@ namespace DataGridViewUse
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(14, 483);
+            this.textBox2.Location = new System.Drawing.Point(14, 474);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(205, 70);
             this.textBox2.TabIndex = 24;
             this.textBox2.Text = "2";
@@ -209,7 +210,7 @@ namespace DataGridViewUse
             // 
             this.flowLayoutPanel1.Controls.Add(this.addCheckCoumCbx);
             this.flowLayoutPanel1.Controls.Add(this.addColumBtn);
-            this.flowLayoutPanel1.Controls.Add(this.CheckCheckStateBtn);
+            this.flowLayoutPanel1.Controls.Add(this.checkStateBtn);
             this.flowLayoutPanel1.Controls.Add(this.checkCountBtn);
             this.flowLayoutPanel1.Controls.Add(this.reverseCheckBtn);
             this.flowLayoutPanel1.Controls.Add(this.falseBtn);
@@ -250,16 +251,15 @@ namespace DataGridViewUse
             this.removeLineBtn.Text = "選択行削除";
             this.removeLineBtn.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // addLineBtn
             // 
-            this.button4.Location = new System.Drawing.Point(389, 337);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(94, 45);
-            this.button4.TabIndex = 20;
-            this.button4.Text = "行追加";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.WidthAdjjustBtn_Click);
+            this.addLineBtn.Location = new System.Drawing.Point(389, 337);
+            this.addLineBtn.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.addLineBtn.Name = "addLineBtn";
+            this.addLineBtn.Size = new System.Drawing.Size(94, 45);
+            this.addLineBtn.TabIndex = 20;
+            this.addLineBtn.Text = "行追加";
+            this.addLineBtn.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -271,7 +271,7 @@ namespace DataGridViewUse
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.SizeColumnsCmb);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.addLineBtn);
             this.Controls.Add(this.removeLineBtn);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.applyBtn);
@@ -301,7 +301,7 @@ namespace DataGridViewUse
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button trueBtn;
         private System.Windows.Forms.Button falseBtn;
-        private System.Windows.Forms.Button CheckCheckStateBtn;
+        private System.Windows.Forms.Button checkStateBtn;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
@@ -309,7 +309,7 @@ namespace DataGridViewUse
         private System.Windows.Forms.Button applyBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Button removeLineBtn;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button addLineBtn;
     }
 }
 

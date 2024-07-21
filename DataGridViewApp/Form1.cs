@@ -190,7 +190,7 @@ namespace DataGridViewUse {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void WidthAdjjustBtn_Click(object sender, EventArgs e) {
+        private void WidthAdjustBtn_Click(object sender, EventArgs e) {
             //ヘッダーとすべてのセルの内容に合わせて、列の幅を自動調整する
             GridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
@@ -290,8 +290,8 @@ namespace DataGridViewUse {
 
         // セルをクリックする
         private void DataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
+            // 左上のヘッダーを選択して、チェック状態を反転する
             if (addCheckCoumCbx.Checked == true && e.RowIndex == -1 && e.ColumnIndex == 0) {
-
                 System.Windows.Forms.DataGridView dgv = (System.Windows.Forms.DataGridView)sender;
                 List<Point> selectedCell = new List<Point>();
                 // 選択状態のセルを記憶
@@ -327,7 +327,7 @@ namespace DataGridViewUse {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CheckCheckStateBtn_Click(object sender, EventArgs e) {
+        private void CheckStateBtn_Click(object sender, EventArgs e) {
             try {
                 if (GridView.Rows[2].Cells[0].Value == null) {
                     return;
@@ -367,6 +367,6 @@ namespace DataGridViewUse {
                 firstColumnsMode = false;
             }
             this.Text = $"{titleName} : {columsMode}";
-        }
+        }        
     }
 }
